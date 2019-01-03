@@ -27,10 +27,12 @@ class PostTransformer extends TransformerAbstract
         ];
     }
 
-    public function links(Post $data): array
+    public function links(Post $post): array
     {
         return [
-            'foo' => route('posts.show', $data)
+            'author' => route('users.show', ['user' => $post->user_id]),
+            'comments' => route('posts.comments.index', $post),
+            'tags' => route('posts.tags.index', $post),
         ];
     }
 
