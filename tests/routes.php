@@ -9,7 +9,7 @@ Route::get('/users/{user}', 'UserController@show')
     ->name('users.show');
 
 Route::get('/users/{user}/posts', 'UserPostController@index')
-    ->name('users.post.index');
+    ->name('users.posts.index');
 
 Route::get('/posts', 'PostController@index')
     ->name('posts.index');
@@ -25,3 +25,6 @@ Route::get('/posts/{post}/tags', 'PostTagController@index')
 
 Route::get('/tags', 'TagController@index')
     ->name('tags.index');
+
+Route::get('/tags/{tag}/posts', 'TagPostController@index')
+    ->name('tags.posts.index');

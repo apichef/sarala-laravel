@@ -1,0 +1,50 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Sarala;
+
+use Sarala\Dummy\Comment;
+use Sarala\Dummy\Post;
+
+class PostItemTest extends TestCase
+{
+    public function test_can_fetch_a_post()
+    {
+        $post = factory(Post::class)->create();
+
+        $this->json('get', route('posts.show', $post))
+            ->assertJson([
+                'data' => [
+                    'id' => (int) $post->id,
+                    'type' => 'posts',
+                    'attributes' => [
+                        'slug' => $post->slug,
+                        'title' => $post->title,
+                        'subtitle' => $post->subtitle,
+                        'body' => $post->body,
+                        'created_at' => $post->created_at->toIso8601String(),
+                        'updated_at' => $post->created_at->toIso8601String(),
+                        'published_at' => $post->published_at->toIso8601String(),
+                    ],
+                    'links' => [
+                        'self' => route('posts.show', $post),
+                        'author' => route('users.show', ['user' => $post->user_id]),
+                        'comments' => route('posts.comments.index', $post),
+                        'tags' => route('posts.tags.index', $post),
+                    ]
+                ]
+            ]);
+    }
+
+    public function test_can_fetch_a_post_with_comments_and_author()
+    {
+        $post = factory(Post::class)->create();
+        factory(Comment::class)->create(['post_id' => $post]);
+
+        $url = route('posts.show', $post) . '?include=comments.author';
+
+        $this->json('get', $url)
+            ->assertOk();
+    }
+}

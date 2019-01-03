@@ -36,8 +36,7 @@ class BaseController extends Controller
         $resource = new Item($object, $transformer, $resourceKey);
         $data = $this->fractal->createData($resource)->toArray();
 
-        return response()
-            ->json($data, 200, $this->headers);
+        return response()->json($data, 200, $this->headers);
     }
 
     protected function responseCollection($collection, $transformer, $resourceKey = null): JsonResponse

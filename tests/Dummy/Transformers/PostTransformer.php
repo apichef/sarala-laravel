@@ -23,7 +23,9 @@ class PostTransformer extends TransformerAbstract
             'title' => $post->title,
             'subtitle' => $post->subtitle,
             'body' => $post->body,
-            'published_at' => $post->published_at->toDateString(),
+            'created_at' => $post->created_at->toIso8601String(),
+            'updated_at' => $post->created_at->toIso8601String(),
+            'published_at' => $post->published_at->toIso8601String(),
         ];
     }
 
@@ -31,8 +33,8 @@ class PostTransformer extends TransformerAbstract
     {
         return [
             'author' => route('users.show', ['user' => $post->user_id]),
-            'comments' => route('posts.comments.index', $post),
             'tags' => route('posts.tags.index', $post),
+            'comments' => route('posts.comments.index', $post),
         ];
     }
 

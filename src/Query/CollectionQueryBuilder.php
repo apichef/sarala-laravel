@@ -2,35 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Sarala;
+namespace Sarala\Query;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Sarala\Contracts\CollectionQueryContract;
+use Sarala\Filters;
 
-abstract class FetchQueryBuilderAbstract
+abstract class CollectionQueryBuilder extends BaseQueryBuilder implements CollectionQueryContract
 {
-    /** @var Request $request */
-    protected $request;
-
-    /** @var Builder $query */
-    protected $query;
-
-    /** @var Fields $fields */
-    protected $fields;
-
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
-    }
-
-    abstract protected function init(): Builder;
-    abstract protected function fields();
-    abstract protected function filter(Filters $filters);
-    abstract protected function include(Includes $includes);
-    abstract protected function orderBy(): array;
-
     public function fetch()
     {
         $this->fields = $this->getFields();
@@ -65,16 +45,6 @@ abstract class FetchQueryBuilderAbstract
         }
 
         return $this->query->get();
-    }
-
-    private function getIncludes(): Includes
-    {
-        return new Includes(explode(',', $this->request->get('include')));
-    }
-
-    private function getFields(): Fields
-    {
-        return new Fields($this->request->get('fields', []));
     }
 
     private function getFilters(): Filters

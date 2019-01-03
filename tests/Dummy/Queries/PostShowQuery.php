@@ -6,28 +6,22 @@ namespace Sarala\Dummy\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
 use Sarala\Dummy\Post;
-use Sarala\FetchQueryBuilderAbstract;
-use Sarala\Filters;
 use Sarala\Includes;
+use Sarala\Query\ItemQueryBuilder;
 
-class PostShowQuery extends FetchQueryBuilderAbstract
+class PostShowQuery extends ItemQueryBuilder
 {
-    protected function init(): Builder
+    public function init(): Builder
     {
         return Post::where('id', $this->request->route('post')->id);
     }
 
-    protected function fields()
+    public function fields()
     {
         // TODO: Implement fields() method.
     }
 
-    protected function filter(Filters $filters)
-    {
-        // TODO: Implement filter() method.
-    }
-
-    protected function include(Includes $includes)
+    public function include(Includes $includes)
     {
         $this->query
             ->when($includes->has('tags'), function ($query) {
@@ -38,11 +32,9 @@ class PostShowQuery extends FetchQueryBuilderAbstract
             })
             ->when($includes->has('comments'), function ($query) {
                 $query->with('comments');
+            })
+            ->when($includes->has('comments.author'), function ($query) {
+                $query->with('comments.author');
             });
-    }
-
-    protected function orderBy(): array
-    {
-        return [];
     }
 }

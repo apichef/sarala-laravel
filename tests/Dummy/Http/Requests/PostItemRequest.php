@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Sarala\Dummy\Http\Requests;
 
 use Sarala\Dummy\Queries\PostShowQuery;
-use Sarala\FetchQueryBuilderAbstract;
-use Sarala\Http\Requests\ApiRequestAbstract;
+use Sarala\Http\Requests\ItemRequest;
+use Sarala\Query\ItemQueryBuilder;
 
-class PostShowRequest extends ApiRequestAbstract
+class PostItemRequest extends ItemRequest
 {
     public function authorize(): bool
     {
@@ -19,12 +19,12 @@ class PostShowRequest extends ApiRequestAbstract
     {
         return [
             'tags',
-            'comments',
+            'comments.author',
             'author',
         ];
     }
 
-    public function builder(): FetchQueryBuilderAbstract
+    public function builder(): ItemQueryBuilder
     {
         return new PostShowQuery($this);
     }

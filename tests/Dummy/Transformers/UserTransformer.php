@@ -13,18 +13,21 @@ class UserTransformer extends TransformerAbstract
         'posts',
     ];
 
-    public function data($user): array
+    public function data(User $user): array
     {
         return [
             'id' => (int) $user->id,
             'name' => $user->name,
             'email' => $user->email,
+            'created_at' => $user->created_at->toIso8601String(),
         ];
     }
 
-    public function links($data): array
+    public function links(User $user): array
     {
-        return [];
+        return [
+            'posts' => route('users.posts.index', $user)
+        ];
     }
 
     public function includePosts(User $user)

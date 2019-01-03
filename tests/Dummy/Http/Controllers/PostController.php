@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Http\Controllers;
 
-use Sarala\Dummy\Http\Requests\PostIndexRequest;
-use Sarala\Dummy\Http\Requests\PostShowRequest;
+use Sarala\Dummy\Http\Requests\PostCollectionRequest;
+use Sarala\Dummy\Http\Requests\PostItemRequest;
 use Sarala\Dummy\Post;
 use Sarala\Dummy\Transformers\PostTransformer;
 use Sarala\Http\Controllers\BaseController;
 
 class PostController extends BaseController
 {
-    public function index(PostIndexRequest $request)
+    public function index(PostCollectionRequest $request)
     {
         $data = $request->builder()->fetch();
 
         return $this->responseCollection($data, new PostTransformer(), 'posts');
     }
 
-    public function show(Post $post, PostShowRequest $request)
+    public function show(Post $post, PostItemRequest $request)
     {
-        $data = $request->builder()->fetch()->first();
+        $data = $request->builder()->fetchFirst();
 
         return $this->responseItem($data, new PostTransformer(), 'posts');
     }
