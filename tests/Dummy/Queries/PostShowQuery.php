@@ -23,18 +23,6 @@ class PostShowQuery extends ItemQueryBuilder
 
     public function include(Includes $includes)
     {
-        $this->query
-            ->when($includes->has('tags'), function ($query) {
-                $query->with('tags');
-            })
-            ->when($includes->has('author'), function ($query) {
-                $query->with('author');
-            })
-            ->when($includes->has('comments'), function ($query) {
-                $query->with('comments');
-            })
-            ->when($includes->has('comments.author'), function ($query) {
-                $query->with('comments.author');
-            });
+        PostQuery::mergeCommonInclude($this->query, $includes);
     }
 }

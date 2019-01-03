@@ -6,6 +6,7 @@ namespace Sarala;
 
 use Sarala\Dummy\Comment;
 use Sarala\Dummy\Post;
+use Sarala\Dummy\Tag;
 
 class PostItemTest extends TestCase
 {
@@ -43,6 +44,22 @@ class PostItemTest extends TestCase
         factory(Comment::class)->create(['post_id' => $post]);
 
         $url = route('posts.show', $post) . '?include=comments.author';
+
+        $this->json('get', $url)
+            ->assertOk();
+    }
+
+    public function test_can_pass_params_to_includes()
+    {
+        $this->withoutExceptionHandling();
+
+        /** @var Post $post */
+        $post = factory(Post::class)->create();
+        factory(Comment::class, 10)->create(['post_id' => $post]);
+        $post->tags()->save(factory(Tag::class)->create());
+        $post->tags()->save(factory(Tag::class)->create());
+
+        $url = route('posts.show', $post) . '?include=comments:limit(5):sort(created_at|desc):with(author)';
 
         $this->json('get', $url)
             ->assertOk();

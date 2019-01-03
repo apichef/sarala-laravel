@@ -4,18 +4,34 @@ declare(strict_types=1);
 
 namespace Sarala;
 
+use Illuminate\Support\Collection;
+
 class Includes
 {
-    /** @var array $fields */
-    private $fields;
+    /** @var Collection $includes */
+    private $includes;
 
-    public function __construct(array $fields)
+    public function __construct(array $includes)
     {
-        $this->fields = $fields;
+        $this->includes = collect($includes)->mapWithKeys(function ($include) {
+            $sections = explode(':', $include);
+
+            return [$sections[0] => new IncludeField($sections)];
+        });
     }
 
     public function has($field): bool
     {
-        return in_array($field, $this->fields);
+        return $this->includes->has($field);
+    }
+
+    public function keys(): array
+    {
+        return $this->includes->keys()->all();
+    }
+
+    public function get($field): IncludeField
+    {
+        return $this->includes->get($field);
     }
 }
