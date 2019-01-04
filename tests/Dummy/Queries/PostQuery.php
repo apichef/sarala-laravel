@@ -20,15 +20,15 @@ class PostQuery
                 $query->with(['comments' => function ($query) use ($includes) {
                     $params = $includes->get('comments')->getParams();
                     $query
-                        ->when(! is_null($params->get('with')), function ($query) use ($params) {
+                        ->when($params->has('with'), function ($query) use ($params) {
                             list($include) = $params->get('with');
                             $query->with($include);
                         })
-                        ->when(! is_null($params->get('limit')), function ($query) use ($params) {
+                        ->when($params->has('limit'), function ($query) use ($params) {
                             list($limit) = $params->get('limit');
                             $query->limit($limit);
                         })
-                        ->when(! is_null($params->get('sort')), function ($query) use ($params) {
+                        ->when($params->has('sort'), function ($query) use ($params) {
                             list($column, $direction) = $params->get('sort');
                             $query->orderBy($column, $direction);
                         });
