@@ -6,8 +6,8 @@ namespace Sarala\Dummy\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
 use Sarala\Dummy\Post;
-use Sarala\Includes;
 use Sarala\Query\ItemQueryBuilder;
+use Sarala\Query\QueryParamBag;
 
 class PostShowQuery extends ItemQueryBuilder
 {
@@ -21,7 +21,7 @@ class PostShowQuery extends ItemQueryBuilder
         // TODO: Implement fields() method.
     }
 
-    public function include(Includes $includes)
+    public function include(QueryParamBag $includes)
     {
         PostQuery::mergeCommonInclude($this->query, $includes);
     }

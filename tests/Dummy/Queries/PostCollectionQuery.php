@@ -6,9 +6,8 @@ namespace Sarala\Dummy\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
 use Sarala\Dummy\Post;
-use Sarala\Filters;
-use Sarala\Includes;
 use Sarala\Query\CollectionQueryBuilder;
+use Sarala\Query\QueryParamBag;
 
 class PostCollectionQuery extends CollectionQueryBuilder
 {
@@ -22,7 +21,7 @@ class PostCollectionQuery extends CollectionQueryBuilder
         // TODO: Implement fields() method.
     }
 
-    public function filter(Filters $filters)
+    public function filter(QueryParamBag $filters)
     {
         $this->query
             ->when($filters->has('my'), function ($query) {
@@ -30,7 +29,7 @@ class PostCollectionQuery extends CollectionQueryBuilder
             });
     }
 
-    public function include(Includes $includes)
+    public function include(QueryParamBag $includes)
     {
         PostQuery::mergeCommonInclude($this->query, $includes);
     }

@@ -51,8 +51,6 @@ class PostItemTest extends TestCase
 
     public function test_can_pass_params_to_includes()
     {
-        $this->withoutExceptionHandling();
-
         /** @var Post $post */
         $post = factory(Post::class)->create();
         factory(Comment::class, 10)->create(['post_id' => $post]);

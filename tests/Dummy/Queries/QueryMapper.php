@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Sarala\Dummy\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
-use Sarala\Includes;
+use Sarala\Query\QueryParamBag;
 
 trait QueryMapper
 {
-    public static function mapIncludes(Builder $builder, Includes $includes, array $map)
+    public static function mapIncludes(Builder $builder, QueryParamBag $includes, array $map)
     {
         collect($map)->each(function ($value, $key) use ($builder, $includes) {
             if (is_callable($value)) {

@@ -10,12 +10,12 @@ abstract class ItemQueryBuilder extends BaseQueryBuilder implements ItemQueryCon
 {
     public function fetch()
     {
-        $this->fields = $this->getFields();
+        $this->fields = $this->request->fields();
         $this->query = $this->init();
         $this->fields();
 
         if ($this->request->filled('include')) {
-            $this->include($this->getIncludes());
+            $this->include($this->request->includes());
         }
 
         return $this->query->get();

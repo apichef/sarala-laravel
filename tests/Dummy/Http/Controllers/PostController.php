@@ -23,8 +23,6 @@ class PostController extends BaseController
     {
         $data = $request->builder()->fetchFirst();
 
-        dd($data->toArray());
-
         return $this->responseItem($data, new PostTransformer(), 'posts');
     }
 }

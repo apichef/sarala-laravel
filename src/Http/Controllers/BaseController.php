@@ -12,6 +12,7 @@ use League\Fractal\Manager;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
+use Sarala\Query\ApiRequestInspector;
 
 class BaseController extends Controller
 {
@@ -29,6 +30,13 @@ class BaseController extends Controller
         }
 
         $this->fractal = $manager;
+    }
+
+    public function callAction($method, $parameters)
+    {
+        (new ApiRequestInspector($parameters))->inspect();
+
+        return call_user_func_array([$this, $method], $parameters);
     }
 
     protected function responseItem($object, $transformer, $resourceKey = null): JsonResponse

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Sarala;
+namespace Sarala\Query;
 
 class Fields
 {

@@ -5,24 +5,22 @@ declare(strict_types=1);
 namespace Sarala\Query;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use Sarala\Contracts\CollectionQueryContract;
-use Sarala\Filters;
 
 abstract class CollectionQueryBuilder extends BaseQueryBuilder implements CollectionQueryContract
 {
     public function fetch()
     {
-        $this->fields = $this->getFields();
+        $this->fields = $this->request->fields();
         $this->query = $this->init();
         $this->fields();
 
         if ($this->request->filled('filter')) {
-            $this->filter($this->getFilters());
+            $this->filter($this->request->filters());
         }
 
         if ($this->request->filled('include')) {
-            $this->include($this->getIncludes());
+            $this->include($this->request->includes());
         }
 
         if ($this->request->filled('sort')) {
@@ -30,58 +28,30 @@ abstract class CollectionQueryBuilder extends BaseQueryBuilder implements Collec
         }
 
         if ($this->request->filled('page')) {
-            $perPage = $this->request->input('page.size', 10);
-            $page = $this->request->input('page.number', 1);
-
-            $paginator = $this->query
-                ->paginate($perPage, ['*'], 'page[number]', $page);
-
-            return $this->appendParamsToPaginatedUrl($paginator, [
-                'fields',
-                'filter',
-                'include',
-                'sort',
-            ]);
+            return $this->appendParamsToPaginatedUrl();
         }
 
         return $this->query->get();
-    }
-
-    private function getFilters(): Filters
-    {
-        return new Filters($this->request->get('filter'));
-    }
-
-    private function getSortFields(): Collection
-    {
-        return collect(explode(',', $this->request->get('sort')));
     }
 
     private function appendSortQuery(): void
     {
         $allowedSorts = $this->orderBy();
 
-        $this->getSortFields()->each(function ($field) use ($allowedSorts) {
-            $direction = 'asc';
-
-            if (starts_with($field, '-')) {
-                $direction = 'desc';
-                $field = str_after($field, '-');
-            }
-
-            if (in_array($field, $allowedSorts)) {
-                $this->query->orderBy($field, $direction);
+        $this->request->sorts()->each(function (SortField $field) use ($allowedSorts) {
+            if (in_array($field->getField(), $allowedSorts)) {
+                $this->query->orderBy($field->getField(), $field->getDirection());
             }
         });
     }
 
-    private function appendParamsToPaginatedUrl(LengthAwarePaginator $paginator, array $params): LengthAwarePaginator
+    private function appendParamsToPaginatedUrl(): LengthAwarePaginator
     {
-        foreach ($params as $param) {
-            if ($this->request->filled($param)) {
-                $paginator->appends($param, $this->request->get($param));
-            }
-        }
+        $perPage = $this->request->input('page.size', 10);
+        $page = $this->request->input('page.number', 1);
+        $paginator = $this->query->paginate($perPage, ['*'], 'page[number]', $page);
+
+        $paginator->appends($this->request->except('page'));
 
         if (! is_null($this->request->input('page.size'))) {
             $paginator->appends('page[size]', $this->request->input('page.size'));
