@@ -28,3 +28,8 @@ Route::get('/tags', 'TagController@index')
 
 Route::get('/tags/{tag}/posts', 'TagPostController@index')
     ->name('tags.posts.index');
+
+Route::get('/exception', function () {
+    throw new \Sarala\Dummy\Exceptions\TestException();
+})
+    ->name('exception');
