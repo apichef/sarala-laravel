@@ -1,19 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sarala\Exceptions;
 
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Sarala\Http\Requests\ApiRequestAbstract;
 
-class ApiRequestContractNotImplementedException extends Exception
+class ApiRequestContractNotImplementedException extends ApiException
 {
-    public function render(Request $request): Response
+    /**
+     * Get the HTTP status code applicable to this problem.
+     */
+    public function status(): int
     {
-        return response()->json([
-            'status' => '500',
-            'title' => 'API Request should extend ' . ApiRequestAbstract::class,
-        ], 500);
+        return 400;
+    }
+
+    /**
+     * Get short, human-readable summary of the problem.
+     */
+    public function title(): string
+    {
+        return 'API Request should extend ' . ApiRequestAbstract::class;
     }
 }

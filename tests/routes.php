@@ -33,3 +33,6 @@ Route::get('/exception', function () {
     throw new \Sarala\Dummy\Exceptions\TestException();
 })
     ->name('exception');
+
+Route::get('/non-api-request', 'NonApiRequestController@show')
+    ->name('non-api-request');
