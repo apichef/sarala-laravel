@@ -11,6 +11,8 @@ use Sarala\Query\QueryParamBag;
 
 class PostShowQuery extends ItemQueryBuilder
 {
+    use PostQuery;
+
     public function init(): Builder
     {
         return Post::where('id', $this->request->route('post')->id);
@@ -23,6 +25,6 @@ class PostShowQuery extends ItemQueryBuilder
 
     public function include(QueryParamBag $includes)
     {
-        PostQuery::mergeCommonInclude($this->query, $includes);
+        $this->mergeCommonInclude($this->query, $includes);
     }
 }

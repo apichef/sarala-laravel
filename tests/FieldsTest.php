@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sarala;
 
+use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
 use Sarala\Query\Fields;
 
@@ -15,10 +16,8 @@ class FieldsTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->fields = new Fields([
-            'posts' => 'id,title',
-            'comments' => 'id,body',
-        ]);
+        $request = Request::create('/url?fields[posts]=id,title&fields[comments]=id,body');
+        $this->fields = new Fields($request);
     }
 
     public function test_has()

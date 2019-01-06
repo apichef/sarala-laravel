@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
+use Illuminate\Http\Request;
+
 class Fields
 {
     /** @var array */
     private $fields;
 
-    public function __construct(array $fields)
+    public function __construct(Request $request)
     {
-        $this->fields = $fields;
+        $this->fields = $request->get('fields', []);
     }
 
     public function has($resourceName)

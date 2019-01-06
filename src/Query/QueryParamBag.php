@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class QueryParamBag
@@ -11,8 +12,9 @@ class QueryParamBag
     /** @var Collection $params */
     private $params;
 
-    public function __construct(array $params)
+    public function __construct(Request $request, string $field)
     {
+        $params = $request->filled($field) ? explode(',', $request->get($field)) : [];
         $this->params = collect($params)->mapWithKeys(function ($include) {
             $sections = explode(':', $include);
 
@@ -30,13 +32,13 @@ class QueryParamBag
         return $this->params->keys()->all();
     }
 
-    public function get($field): QueryParam
+    public function get($field): ?QueryParam
     {
         return $this->params->get($field);
     }
 
     public function each($callback)
     {
-        return $this->params->each($callback);
+        $this->params->each($callback);
     }
 }

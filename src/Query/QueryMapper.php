@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Sarala\Dummy\Queries;
+namespace Sarala\Query;
 
 use Illuminate\Database\Eloquent\Builder;
-use Sarala\Query\QueryParamBag;
 
 trait QueryMapper
 {
-    public static function mapIncludes(Builder $builder, QueryParamBag $includes, array $map)
+    public function mapIncludes(Builder $builder, QueryParamBag $includes, array $map)
     {
         collect($map)->each(function ($value, $key) use ($builder, $includes) {
             if (is_callable($value)) {

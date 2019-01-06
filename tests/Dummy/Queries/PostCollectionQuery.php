@@ -11,6 +11,8 @@ use Sarala\Query\QueryParamBag;
 
 class PostCollectionQuery extends CollectionQueryBuilder
 {
+    use PostQuery;
+
     public function init(): Builder
     {
         return Post::query();
@@ -31,7 +33,7 @@ class PostCollectionQuery extends CollectionQueryBuilder
 
     public function include(QueryParamBag $includes)
     {
-        PostQuery::mergeCommonInclude($this->query, $includes);
+        $this->mergeCommonInclude($this->query, $includes);
     }
 
     public function orderBy(): array

@@ -28,7 +28,7 @@ class QueryParam
         return $this->params;
     }
 
-    protected function setParams(array $sections): void
+    private function setParams(array $sections): void
     {
         $params = [];
 

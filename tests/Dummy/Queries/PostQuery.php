@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace Sarala\Dummy\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
+use Sarala\Query\QueryMapper;
 use Sarala\Query\QueryParamBag;
 
-class PostQuery
+trait PostQuery
 {
     use QueryMapper;
 
-    public static function mergeCommonInclude(Builder $query, QueryParamBag $includes)
+    public function mergeCommonInclude(Builder $query, QueryParamBag $includes)
     {
-        self::mapIncludes($query, $includes, [
+        $this->mapIncludes($query, $includes, [
             'tags',
             'author' => 'author',
             'comments' => function (Builder $query) use ($includes) {
