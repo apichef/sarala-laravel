@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sarala\Exceptions;
 
 class UnauthorizedIncludeException extends ApiException
