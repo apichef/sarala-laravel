@@ -14,7 +14,7 @@ class PostItemTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->json('get', route('posts.show', $post))
+        $this->apiRequest('get', route('posts.show', $post))
             ->assertJson([
                 'data' => [
                     'id' => (int) $post->id,
@@ -45,7 +45,7 @@ class PostItemTest extends TestCase
 
         $url = route('posts.show', $post) . '?include=comments.author';
 
-        $this->json('get', $url)
+        $this->apiRequest('get', $url)
             ->assertOk();
     }
 
@@ -59,7 +59,7 @@ class PostItemTest extends TestCase
 
         $url = route('posts.show', $post) . '?include=comments:limit(5):sort(created_at|desc):with(author)';
 
-        $this->json('get', $url)
+        $this->apiRequest('get', $url)
             ->assertOk();
     }
 }

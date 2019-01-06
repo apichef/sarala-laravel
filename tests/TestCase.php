@@ -7,6 +7,7 @@ namespace Sarala;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Sarala\Http\Middleware\ContentNegotiation;
 
 class TestCase extends BaseTestCase
 {
@@ -41,9 +42,17 @@ class TestCase extends BaseTestCase
     protected function registerRoutes(): void
     {
         Route::namespace('Sarala\Dummy\Http\Controllers')
-            ->middleware([SubstituteBindings::class])
+            ->middleware([SubstituteBindings::class, ContentNegotiation::class])
             ->group(function () {
                 require __DIR__.'/routes.php';
             });
+    }
+
+    public function apiRequest($method, $uri, array $data = [])
+    {
+        return $this->json($method, $uri, $data, [
+            'CONTENT_TYPE' => 'application/vnd.api+json',
+            'Accept' => 'application/vnd.api+json',
+        ]);
     }
 }

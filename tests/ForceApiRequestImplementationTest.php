@@ -8,7 +8,7 @@ class ForceApiRequestImplementationTest extends TestCase
 {
     public function test_it_force_to_implement_ApiRequestAbstract()
     {
-        $this->json('get', route('non-api-request'))
+        $this->apiRequest('get', route('non-api-request'))
             ->assertStatus(400)
             ->assertJson([
                 'error' => [

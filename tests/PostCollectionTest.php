@@ -13,7 +13,7 @@ class PostCollectionTest extends TestCase
     {
         factory(Post::class, 10)->create();
 
-        $this->json('get', route('posts.index'))
+        $this->apiRequest('get', route('posts.index'))
             ->assertJsonStructure([
                 'data' => [
                     '*' => [
@@ -44,7 +44,7 @@ class PostCollectionTest extends TestCase
 
         $url = route('posts.index') . '?include=comments.author';
 
-        $this->json('get', $url)
+        $this->apiRequest('get', $url)
             ->assertOk();
     }
 }
