@@ -8,5 +8,4 @@ use Sarala\Contracts\ItemRequestContract;
 
 abstract class ItemRequest extends ApiRequestAbstract implements ItemRequestContract
 {
-
 }
