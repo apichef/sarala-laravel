@@ -8,5 +8,4 @@ use Sarala\Contracts\CollectionRequestContract;
 
 abstract class CollectionRequest extends ApiRequestAbstract implements CollectionRequestContract
 {
-
 }
