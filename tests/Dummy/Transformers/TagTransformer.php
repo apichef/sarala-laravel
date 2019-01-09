@@ -24,7 +24,7 @@ class TagTransformer extends TransformerAbstract
     public function links(Tag $tag): array
     {
         return [
-            'posts' => route('tags.posts.index', $tag)
+            'posts' => route('tags.posts.index', $tag),
         ];
     }
 

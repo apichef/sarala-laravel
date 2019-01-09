@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Illuminate\Http\Request;
-use PHPUnit\Framework\TestCase;
 use Sarala\Query\ParamBag;
+use Illuminate\Http\Request;
 use Sarala\Query\QueryParam;
+use PHPUnit\Framework\TestCase;
 use Sarala\Query\QueryParamBag;
 
 class QueryParamTest extends TestCase

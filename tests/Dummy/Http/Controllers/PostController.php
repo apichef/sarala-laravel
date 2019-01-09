@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Http\Controllers;
 
-use Sarala\Dummy\Http\Requests\PostCollectionRequest;
-use Sarala\Dummy\Http\Requests\PostItemRequest;
 use Sarala\Dummy\Post;
-use Sarala\Dummy\Transformers\PostTransformer;
 use Sarala\Http\Controllers\BaseController;
+use Sarala\Dummy\Transformers\PostTransformer;
+use Sarala\Dummy\Http\Requests\PostItemRequest;
+use Sarala\Dummy\Http\Requests\PostCollectionRequest;
 
 class PostController extends BaseController
 {

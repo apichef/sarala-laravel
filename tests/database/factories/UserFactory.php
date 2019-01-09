@@ -1,7 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
 use Sarala\Dummy\User;
+use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [

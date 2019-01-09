@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Support\Facades\Route;
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use Sarala\Http\Middleware\ContentNegotiation;
+use Orchestra\Testbench\TestCase as BaseTestCase;
+use Illuminate\Routing\Middleware\SubstituteBindings;
 
 class TestCase extends BaseTestCase
 {
@@ -15,7 +15,7 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->artisan('migrate', ['--database' => 'testbench']);
         $this->withFactories(__DIR__.'/database/factories');
         $this->registerRoutes();

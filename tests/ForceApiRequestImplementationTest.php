@@ -14,7 +14,7 @@ class ForceApiRequestImplementationTest extends TestCase
                 'error' => [
                     'status' => '400',
                     'title' => 'API Request should extend Sarala\\Http\\Requests\\ApiRequestAbstract',
-                ]
+                ],
             ]);
     }
 }

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 use Sarala\Dummy\Post;
+use Illuminate\Http\Request;
 use Sarala\Query\QueryMapper;
 use Sarala\Query\QueryParamBag;
 

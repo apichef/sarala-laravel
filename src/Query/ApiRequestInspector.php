@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Sarala\Exceptions\ApiRequestContractNotImplementedException;
-use Sarala\Exceptions\UnauthorizedIncludeException;
 use Sarala\Http\Requests\ApiRequestAbstract;
+use Sarala\Exceptions\UnauthorizedIncludeException;
+use Sarala\Exceptions\ApiRequestContractNotImplementedException;
 
 class ApiRequestInspector
 {
