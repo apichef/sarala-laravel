@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Sarala\Contracts\CollectionQueryContract;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 abstract class CollectionQueryBuilder extends BaseQueryBuilder implements CollectionQueryContract
 {

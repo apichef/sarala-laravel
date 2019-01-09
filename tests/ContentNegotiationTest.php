@@ -26,7 +26,7 @@ class ContentNegotiationTest extends TestCase
                 'error' => [
                     'status' => '415',
                     'title' => 'Unsupported Media Type',
-                ]
+                ],
             ]);
     }
 }

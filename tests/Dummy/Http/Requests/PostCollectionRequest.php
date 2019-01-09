@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Http\Requests;
 
-use Sarala\Dummy\Queries\PostCollectionQuery;
-use Sarala\Http\Requests\CollectionRequest;
 use Sarala\Query\CollectionQueryBuilder;
+use Sarala\Http\Requests\CollectionRequest;
+use Sarala\Dummy\Queries\PostCollectionQuery;
 
 class PostCollectionRequest extends CollectionRequest
 {

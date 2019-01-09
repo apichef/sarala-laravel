@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Generator as Faker;
 use Sarala\Dummy\Post;
 use Sarala\Dummy\User;
+use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [
@@ -12,6 +12,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'published_at' => $faker->dateTimeBetween('-1 months', '+1 months'),
         'author_id' => function () {
             return factory(User::class)->create()->id;
-        }
+        },
     ];
 });

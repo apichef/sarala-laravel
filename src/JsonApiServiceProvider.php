@@ -2,20 +2,20 @@
 
 namespace Sarala;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\ServiceProvider;
-use League\Fractal\Manager;
-use League\Fractal\Serializer\JsonApiSerializer;
-use Sarala\Query\Fields;
-use Sarala\Query\QueryParamBag;
 use Sarala\Query\Sorts;
+use Sarala\Query\Fields;
+use League\Fractal\Manager;
+use Illuminate\Http\Request;
+use Sarala\Query\QueryParamBag;
+use Illuminate\Support\ServiceProvider;
+use League\Fractal\Serializer\JsonApiSerializer;
 
 class JsonApiServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/sarala.php' => config_path('sarala.php')
+            __DIR__.'/../config/sarala.php' => config_path('sarala.php'),
         ], 'config');
 
         Request::macro('filters', function () {

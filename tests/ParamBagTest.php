@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala;
 
+use Sarala\Query\ParamBag;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
-use Sarala\Query\ParamBag;
 use Sarala\Query\QueryParamBag;
 
 class ParamBagTest extends TestCase

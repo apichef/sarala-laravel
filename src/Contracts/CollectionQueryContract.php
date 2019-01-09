@@ -9,5 +9,6 @@ use Sarala\Query\QueryParamBag;
 interface CollectionQueryContract
 {
     public function filter(QueryParamBag $filters);
+
     public function orderBy(): array;
 }

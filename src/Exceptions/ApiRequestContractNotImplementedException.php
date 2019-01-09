@@ -21,6 +21,6 @@ class ApiRequestContractNotImplementedException extends ApiException
      */
     public function title(): string
     {
-        return 'API Request should extend ' . ApiRequestAbstract::class;
+        return 'API Request should extend '.ApiRequestAbstract::class;
     }
 }
