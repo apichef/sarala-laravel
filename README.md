@@ -2,10 +2,8 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Build Status](https://travis-ci.org/sarala-io/sarala-laravel.svg?branch=master)](https://travis-ci.org/sarala-io/sarala-laravel)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/?branch=master)
 
 Easily build truly RESTful API with Larave + {json:api}
 
@@ -32,9 +30,8 @@ $ composer require sarala-io/sarala
 
 ## Usage
 
-``` php
-$skeleton = new Sarala();
-echo $skeleton->echoPhrase('Hello, League!');
+```
+// soon
 ```
 
 ## Change log
