@@ -26,7 +26,7 @@ class UserTransformer extends TransformerAbstract
     public function links(User $user): array
     {
         return [
-            'posts' => route('users.posts.index', $user)
+            'posts' => route('users.posts.index', $user),
         ];
     }
 

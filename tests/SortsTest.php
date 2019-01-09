@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Sarala;
 
+use Sarala\Query\Sorts;
+use Sarala\Query\SortField;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
-use Sarala\Query\SortField;
-use Sarala\Query\Sorts;
 
 class SortsTest extends TestCase
 {

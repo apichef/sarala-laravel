@@ -8,7 +8,7 @@ class UnauthorizedIncludeException extends ApiException
 {
     public function __construct(string $unauthorizedInclude, array $allowedIncludes)
     {
-        $allowedIncludes = implode(",", $allowedIncludes);
+        $allowedIncludes = implode(',', $allowedIncludes);
         $message = "{$unauthorizedInclude} is missing in allowed includes. Allowed: {$allowedIncludes}";
         parent::__construct($message, 403);
     }

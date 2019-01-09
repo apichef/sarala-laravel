@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Sarala\Dummy\Comment;
 use Sarala\Dummy\Post;
+use Sarala\Dummy\Comment;
 
 class PostCollectionTest extends TestCase
 {
@@ -32,9 +32,9 @@ class PostCollectionTest extends TestCase
                             'comments',
                             'tags',
                             'author',
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ]);
     }
 
@@ -42,7 +42,7 @@ class PostCollectionTest extends TestCase
     {
         factory(Comment::class, 10)->create();
 
-        $url = route('posts.index') . '?include=comments.author';
+        $url = route('posts.index').'?include=comments.author';
 
         $this->apiRequest('get', $url)
             ->assertOk();

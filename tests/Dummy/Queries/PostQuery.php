@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Queries;
 
-use Illuminate\Database\Eloquent\Builder;
 use Sarala\Query\QueryMapper;
 use Sarala\Query\QueryParamBag;
+use Illuminate\Database\Eloquent\Builder;
 
 trait PostQuery
 {
@@ -37,7 +37,7 @@ trait PostQuery
             },
             'comments.author' => function (Builder $query) {
                 $query->with('comments.author');
-            }
+            },
         ]);
     }
 }

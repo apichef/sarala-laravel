@@ -8,7 +8,6 @@ use Sarala\Exceptions\ApiException;
 
 class TestException extends ApiException
 {
-
     /**
      * Get unique identifier for this particular occurrence
      * of the problem.

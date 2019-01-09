@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Sarala\Http\Controllers;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use League\Fractal\Manager;
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use League\Fractal\Resource\Collection;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use League\Fractal\Resource\Item;
+use Illuminate\Routing\Controller;
 use Sarala\Query\ApiRequestInspector;
+use League\Fractal\Resource\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class BaseController extends Controller
 {

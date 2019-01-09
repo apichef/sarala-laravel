@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Sarala\Contracts\QueryContract;
+use Illuminate\Database\Eloquent\Builder;
 
 abstract class BaseQueryBuilder implements QueryContract
 {

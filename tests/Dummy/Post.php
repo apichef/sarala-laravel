@@ -13,7 +13,7 @@ class Post extends Model
         'title',
         'subtitle',
         'body',
-        'published_at'
+        'published_at',
     ];
 
     protected $dates = [

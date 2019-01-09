@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Sarala\Dummy\Comment;
-use Sarala\Dummy\Post;
 use Sarala\Dummy\Tag;
+use Sarala\Dummy\Post;
+use Sarala\Dummy\Comment;
 
 class PostItemTest extends TestCase
 {
@@ -33,8 +33,8 @@ class PostItemTest extends TestCase
                         'author' => route('users.show', ['user' => $post->user_id]),
                         'comments' => route('posts.comments.index', $post),
                         'tags' => route('posts.tags.index', $post),
-                    ]
-                ]
+                    ],
+                ],
             ]);
     }
 
@@ -43,7 +43,7 @@ class PostItemTest extends TestCase
         $post = factory(Post::class)->create();
         factory(Comment::class)->create(['post_id' => $post]);
 
-        $url = route('posts.show', $post) . '?include=comments.author';
+        $url = route('posts.show', $post).'?include=comments.author';
 
         $this->apiRequest('get', $url)
             ->assertOk();
@@ -57,7 +57,7 @@ class PostItemTest extends TestCase
         $post->tags()->save(factory(Tag::class)->create());
         $post->tags()->save(factory(Tag::class)->create());
 
-        $url = route('posts.show', $post) . '?include=comments:limit(5):sort(created_at|desc):with(author)';
+        $url = route('posts.show', $post).'?include=comments:limit(5):sort(created_at|desc):with(author)';
 
         $this->apiRequest('get', $url)
             ->assertOk();
