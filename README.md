@@ -1,9 +1,10 @@
-# sarala
+<p align="center"><img src="https://milroy.me/img/sarala-logo.svg" width="200"></p>
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status](https://travis-ci.org/sarala-io/sarala-laravel.svg?branch=master)](https://travis-ci.org/sarala-io/sarala-laravel)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/?branch=master)
+    [![Software License][ico-license]](LICENSE.md)
+    [![Build Status](https://travis-ci.org/sarala-io/sarala-laravel.svg?branch=master)](https://travis-ci.org/sarala-io/sarala-laravel)
+    [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/?branch=master)
+    [![StyleCI](https://github.styleci.io/repos/163845768/shield?branch=master)](https://github.styleci.io/repos/163845768) 
 
 Easily build truly RESTful API with Larave + {json:api}
 
