@@ -22,15 +22,8 @@ class CommentTransformer extends TransformerAbstract
         ];
     }
 
-    public function links(Comment $comment): array
-    {
-        return [
-            'author' => route('users.show', ['user' => $comment->user_id]),
-        ];
-    }
-
     public function includeAuthor(Comment $comment)
     {
-        return $this->item($comment->author, new UserTransformer(), 'users');
+        return $this->item($comment->user, new UserTransformer(), 'users');
     }
 }

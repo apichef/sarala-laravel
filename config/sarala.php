@@ -6,4 +6,10 @@ return [
      * as a prefix for generated links. Set to `null` to disable this.
      */
     'base_url' => env('API_URL', '/api'),
+
+    'guard' => null,
+
+    'response_headers' => [
+        'Content-Type' => 'application/vnd.api+json',
+    ]
 ];

@@ -24,6 +24,9 @@ class TestCase extends BaseTestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('sarala.base_url', 'http://localhost');
+        $app['config']->set('sarala.response_headers', [
+            'Content-Type' => 'application/vnd.api+json',
+        ]);
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
             'driver'   => 'sqlite',

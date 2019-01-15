@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Http\Requests;
 
-use Sarala\Query\CollectionQueryBuilder;
-use Sarala\Http\Requests\CollectionRequest;
 use Sarala\Dummy\Queries\PostCollectionQuery;
+use Sarala\Http\Requests\ApiRequestAbstract;
+use Sarala\Query\QueryBuilderAbstract;
 
-class PostCollectionRequest extends CollectionRequest
+class PostCollectionRequest extends ApiRequestAbstract
 {
     public function authorize(): bool
     {
@@ -24,7 +24,7 @@ class PostCollectionRequest extends CollectionRequest
         ];
     }
 
-    public function builder(): CollectionQueryBuilder
+    public function builder(): QueryBuilderAbstract
     {
         return new PostCollectionQuery($this);
     }

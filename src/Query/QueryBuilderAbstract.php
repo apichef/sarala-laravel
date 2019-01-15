@@ -4,23 +4,69 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Sarala\Contracts\CollectionQueryContract;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Request;
+use Sarala\Contracts\QueryContract;
+use Illuminate\Database\Eloquent\Builder;
 
-abstract class CollectionQueryBuilder extends BaseQueryBuilder implements CollectionQueryContract
+abstract class QueryBuilderAbstract implements QueryContract
 {
+    use QueryMapper;
+
+    /** @var Request $request */
+    protected $request;
+
+    /** @var Builder $query */
+    protected $query;
+
+    /** @var Fields $fields */
+    protected $fields;
+
+    /** @var QueryParamBag $includes */
+    protected $includes;
+
+    /** @var QueryParamBag $filters */
+    protected $filters;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+        $this->fields = $this->request->fields();
+        $this->includes = $this->request->includes();
+        $this->filters = $this->request->filters();
+        $this->query = $this->init();
+    }
+
+    public function fields()
+    {
+        // ..
+    }
+
+    public function filter(QueryParamBag $filters)
+    {
+        // ..
+    }
+
+    public function include(QueryParamBag $includes)
+    {
+        // ..
+    }
+
+    public function orderBy(): array
+    {
+        return [];
+    }
+
     public function fetch()
     {
-        $this->fields = $this->request->fields();
-        $this->query = $this->init();
         $this->fields();
 
         if ($this->request->filled('filter')) {
-            $this->filter($this->request->filters());
+            $this->filter($this->filters);
         }
 
         if ($this->request->filled('include')) {
-            $this->include($this->request->includes());
+            $this->include($this->includes);
         }
 
         if ($this->request->filled('sort')) {
@@ -58,5 +104,10 @@ abstract class CollectionQueryBuilder extends BaseQueryBuilder implements Collec
         }
 
         return $paginator;
+    }
+
+    public function fetchFirst()
+    {
+        return $this->fetch()->first();
     }
 }

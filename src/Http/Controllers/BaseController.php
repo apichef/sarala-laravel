@@ -17,10 +17,13 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 class BaseController extends Controller
 {
     protected $fractal;
-    private $headers = ['Content-Type' => 'application/vnd.api+json'];
 
     public function __construct(Manager $manager, Request $request)
     {
+        if ($request->filled('fields')) {
+            $manager->parseFieldsets($request->get('fields'));
+        }
+
         if ($request->filled('include')) {
             $manager->parseIncludes($request->get('include'));
         }
@@ -42,9 +45,8 @@ class BaseController extends Controller
     protected function responseItem($object, $transformer, $resourceKey = null): JsonResponse
     {
         $resource = new Item($object, $transformer, $resourceKey);
-        $data = $this->fractal->createData($resource)->toArray();
 
-        return response()->json($data, 200, $this->headers);
+        return $this->response($this->fractal->createData($resource)->toArray());
     }
 
     protected function responseCollection($collection, $transformer, $resourceKey = null): JsonResponse
@@ -55,8 +57,11 @@ class BaseController extends Controller
             $resource->setPaginator(new IlluminatePaginatorAdapter($collection));
         }
 
-        $data = $this->fractal->createData($resource)->toArray();
+        return $this->response($this->fractal->createData($resource)->toArray());
+    }
 
-        return response()->json($data, 200, $this->headers);
+    private function response($data = [], $status = 200, $headers = [])
+    {
+        return response()->json($data, $status, array_merge(config('sarala.response_headers'), $headers));
     }
 }

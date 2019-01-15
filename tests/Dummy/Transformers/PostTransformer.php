@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Sarala\Dummy\Transformers;
 
 use Sarala\Dummy\Post;
+use Sarala\Link;
+use Sarala\Links;
 use Sarala\Transformer\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract
@@ -25,17 +27,20 @@ class PostTransformer extends TransformerAbstract
             'body' => $post->body,
             'created_at' => $post->created_at->toIso8601String(),
             'updated_at' => $post->created_at->toIso8601String(),
-            'published_at' => $post->published_at->toIso8601String(),
+            'published_at' => optional($post->published_at)->toIso8601String(),
         ];
     }
 
-    public function links(Post $post): array
+    public function links($post, $user = null): Links
     {
-        return [
-            'author' => route('users.show', ['user' => $post->user_id]),
-            'tags' => route('posts.tags.index', $post),
-            'comments' => route('posts.comments.index', $post),
-        ];
+        return Links::make()
+            ->when(
+                $post->published_at,
+                Link::make('unpublish', url("/published-posts/{$post->id}"))->delete(),
+                Link::make('publish', url("/published-posts"))->post()->setData([
+                    'id' => $post->id
+                ])
+            );
     }
 
     public function includeAuthor(Post $post)

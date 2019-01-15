@@ -6,20 +6,18 @@ namespace Sarala;
 
 use Sarala\Dummy\Post;
 use Illuminate\Http\Request;
-use Sarala\Query\QueryMapper;
+use Sarala\Query\QueryHelper;
 use Sarala\Query\QueryParamBag;
 
-class QueryMapperTest extends TestCase
+class QueryHelperTest extends TestCase
 {
-    use QueryMapper;
-
     public function test_can_map_key_without_a_value_as_relationship()
     {
         $request = Request::create('/url?include=comments');
         $includes = new QueryParamBag($request, 'include');
-
         $query = Post::query();
-        $this->mapIncludes($query, $includes, ['comments']);
+
+        (new QueryHelper($query, $includes))->exact('comments');
 
         $this->assertArrayHasKey('comments', $query->getEagerLoads());
     }
@@ -28,9 +26,9 @@ class QueryMapperTest extends TestCase
     {
         $request = Request::create('/url?include=author');
         $includes = new QueryParamBag($request, 'include');
-
         $query = Post::query();
-        $this->mapIncludes($query, $includes, ['author' => 'user']);
+
+        (new QueryHelper($query, $includes))->alias('author', 'user');
 
         $this->assertArrayHasKey('user', $query->getEagerLoads());
     }

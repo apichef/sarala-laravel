@@ -26,13 +26,10 @@ class PostItemTest extends TestCase
                         'body' => $post->body,
                         'created_at' => $post->created_at->toIso8601String(),
                         'updated_at' => $post->created_at->toIso8601String(),
-                        'published_at' => $post->published_at->toIso8601String(),
+                        'published_at' => optional($post->published_at)->toIso8601String(),
                     ],
                     'links' => [
                         'self' => route('posts.show', $post),
-                        'author' => route('users.show', ['user' => $post->user_id]),
-                        'comments' => route('posts.comments.index', $post),
-                        'tags' => route('posts.tags.index', $post),
                     ],
                 ],
             ]);
@@ -57,7 +54,21 @@ class PostItemTest extends TestCase
         $post->tags()->save(factory(Tag::class)->create());
         $post->tags()->save(factory(Tag::class)->create());
 
-        $url = route('posts.show', $post).'?include=comments:limit(5):sort(created_at|desc):with(author)';
+        $url = route('posts.show', $post).'?include=comments:limit(5):sort(created_at|desc)';
+
+        $this->apiRequest('get', $url)
+            ->assertOk();
+    }
+
+    public function test_can_pass_params_to_includes_foo()
+    {
+        /** @var Post $post */
+        $post = factory(Post::class)->create();
+        factory(Comment::class, 10)->create(['post_id' => $post]);
+        $post->tags()->save(factory(Tag::class)->create());
+        $post->tags()->save(factory(Tag::class)->create());
+
+        $url = route('posts.show', $post).'?include=author,comments,tags';
 
         $this->apiRequest('get', $url)
             ->assertOk();

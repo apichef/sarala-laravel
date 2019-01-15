@@ -5,22 +5,19 @@ declare(strict_types=1);
 namespace Sarala\Transformer;
 
 use League\Fractal\TransformerAbstract as BaseTransformerAbstract;
+use Sarala\Links;
 
 abstract class TransformerAbstract extends BaseTransformerAbstract
 {
     public function transform($data)
     {
-        return array_merge($this->filterFields($this->data($data)), ['links' => $this->links($data)]);
+        $user = auth(config('sarala.guard'))->user();
+
+        return array_merge($this->data($data), ['links' => $this->links($data, $user)->all()]);
     }
 
-    protected function filterFields(array $data)
+    public function links($model, $user = null): Links
     {
-        $resourceName = $this->getCurrentScope()->getResource()->getResourceKey();
-
-        if (request()->filled('fields') && ! is_null(request()->input("fields.{$resourceName}"))) {
-            return array_only($data, explode(',', request()->input("fields.{$resourceName}")));
-        }
-
-        return $data;
+        return Links::make();
     }
 }

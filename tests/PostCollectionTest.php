@@ -29,9 +29,6 @@ class PostCollectionTest extends TestCase
                         ],
                         'links' => [
                             'self',
-                            'comments',
-                            'tags',
-                            'author',
                         ],
                     ],
                 ],

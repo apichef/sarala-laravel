@@ -21,13 +21,6 @@ class TagTransformer extends TransformerAbstract
         ];
     }
 
-    public function links(Tag $tag): array
-    {
-        return [
-            'posts' => route('tags.posts.index', $tag),
-        ];
-    }
-
     public function includePosts(Tag $tag)
     {
         return $this->collection($tag->posts, new PostTransformer(), 'posts');

@@ -23,13 +23,6 @@ class UserTransformer extends TransformerAbstract
         ];
     }
 
-    public function links(User $user): array
-    {
-        return [
-            'posts' => route('users.posts.index', $user),
-        ];
-    }
-
     public function includePosts(User $user)
     {
         return $this->collection($user->posts, new PostTransformer(), 'posts');
