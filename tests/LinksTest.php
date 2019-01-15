@@ -21,7 +21,7 @@ class LinksTest extends TestCase
         $links = Links::make()->push($link);
 
         $this->assertEquals([
-            'unicorn' => 'http://localhost/unicorn'
+            'unicorn' => 'http://localhost/unicorn',
         ], $links->all());
     }
 
@@ -50,7 +50,7 @@ class LinksTest extends TestCase
             ->when(false, $hero);
 
         $this->assertEquals([
-            'unicorn' => 'http://localhost/unicorn'
+            'unicorn' => 'http://localhost/unicorn',
         ], $links->all());
     }
 
@@ -63,7 +63,7 @@ class LinksTest extends TestCase
             ->when(false, $unicorn, $hero);
 
         $this->assertEquals([
-            'hero' => 'http://localhost/hero'
+            'hero' => 'http://localhost/hero',
         ], $links->all());
     }
 }

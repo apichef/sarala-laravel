@@ -62,7 +62,7 @@ class Link
     public function setData(array $data)
     {
         return $this->meta('data', [
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
