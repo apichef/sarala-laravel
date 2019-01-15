@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Sarala\Contracts\QueryContract;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 abstract class QueryBuilderAbstract implements QueryContract
 {

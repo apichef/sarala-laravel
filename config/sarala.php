@@ -11,5 +11,5 @@ return [
 
     'response_headers' => [
         'Content-Type' => 'application/vnd.api+json',
-    ]
+    ],
 ];

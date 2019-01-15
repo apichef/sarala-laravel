@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Transformer;
 
-use League\Fractal\TransformerAbstract as BaseTransformerAbstract;
 use Sarala\Links;
+use League\Fractal\TransformerAbstract as BaseTransformerAbstract;
 
 abstract class TransformerAbstract extends BaseTransformerAbstract
 {

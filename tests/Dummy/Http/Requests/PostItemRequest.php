@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Http\Requests;
 
-use Sarala\Http\Requests\ApiRequestAbstract;
-use Sarala\Dummy\Queries\PostShowQuery;
 use Sarala\Query\QueryBuilderAbstract;
+use Sarala\Dummy\Queries\PostShowQuery;
+use Sarala\Http\Requests\ApiRequestAbstract;
 
 class PostItemRequest extends ApiRequestAbstract
 {

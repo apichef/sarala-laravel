@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Sarala\Contracts\ApiRequestContract;
+use Illuminate\Foundation\Http\FormRequest;
 
 abstract class ApiRequestAbstract extends FormRequest implements ApiRequestContract
 {

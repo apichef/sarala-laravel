@@ -23,8 +23,8 @@ class LinkTest extends TestCase
         $this->assertEquals([
             'href' => 'http://localhost/unicorn',
             'meta' => [
-                'method' => 'post'
-            ]
+                'method' => 'post',
+            ],
         ], $link->data());
         $this->assertEquals('unicorn', $link->name());
     }
@@ -36,8 +36,8 @@ class LinkTest extends TestCase
         $this->assertEquals([
             'href' => 'http://localhost/unicorn',
             'meta' => [
-                'method' => 'put'
-            ]
+                'method' => 'put',
+            ],
         ], $link->data());
         $this->assertEquals('unicorn', $link->name());
     }
@@ -49,8 +49,8 @@ class LinkTest extends TestCase
         $this->assertEquals([
             'href' => 'http://localhost/unicorn',
             'meta' => [
-                'method' => 'delete'
-            ]
+                'method' => 'delete',
+            ],
         ], $link->data());
         $this->assertEquals('unicorn', $link->name());
     }
@@ -66,9 +66,9 @@ class LinkTest extends TestCase
             'meta' => [
                 'method' => 'post',
                 'data' => [
-                    'data' => ['id' => 'p0st7']
-                ]
-            ]
+                    'data' => ['id' => 'p0st7'],
+                ],
+            ],
         ], $link->data());
         $this->assertEquals('unicorn', $link->name());
     }

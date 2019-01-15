@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Transformers;
 
-use Sarala\Dummy\Post;
 use Sarala\Link;
 use Sarala\Links;
+use Sarala\Dummy\Post;
 use Sarala\Transformer\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract
@@ -37,8 +37,8 @@ class PostTransformer extends TransformerAbstract
             ->when(
                 $post->published_at,
                 Link::make('unpublish', url("/published-posts/{$post->id}"))->delete(),
-                Link::make('publish', url("/published-posts"))->post()->setData([
-                    'id' => $post->id
+                Link::make('publish', url('/published-posts'))->post()->setData([
+                    'id' => $post->id,
                 ])
             );
     }

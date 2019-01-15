@@ -11,7 +11,7 @@ class QueryHelper
     /** @var Builder $query */
     private $query;
 
-    /** @var QueryParamBag $includes*/
+    /** @var QueryParamBag $includes */
     private $includes;
 
     public function __construct(Builder $query, QueryParamBag $includes)
