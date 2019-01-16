@@ -6,29 +6,38 @@ namespace Sarala;
 
 use Sarala\Query\ParamBag;
 use Illuminate\Http\Request;
-use Sarala\Query\QueryParam;
 use PHPUnit\Framework\TestCase;
 use Sarala\Query\QueryParamBag;
 
 class QueryParamTest extends TestCase
 {
-    /** @var QueryParam $queryParam */
-    private $queryParam;
-
-    public function setUp()
+    public function test_string_based_query_paramas()
     {
-        parent::setUp();
-        $request = Request::create('/url?include=comments:limit(5):sort(created_at|desc):with(author)');
-        $this->queryParam = (new QueryParamBag($request, 'include'))->get('comments');
+        $request = Request::create('/url?include=comments:limit(5):sort(created_at|desc),author');
+        $queryParam = (new QueryParamBag($request, 'include'))->get('comments');
+
+        $this->assertEquals('comments', $queryParam->getField());
+        $this->assertInstanceOf(ParamBag::class, $queryParam->getParams());
+
+        $this->assertTrue($queryParam->getParams()->has('limit'));
+        $this->assertEquals([5], $queryParam->getParams()->get('limit'));
+        $this->assertTrue($queryParam->getParams()->has('sort'));
+        $this->assertEquals(['created_at', 'desc'], $queryParam->getParams()->get('sort'));
+        $this->assertFalse($queryParam->getParams()->has('crap'));
     }
 
-    public function test_getField()
+    public function test_array_based_query_paramas()
     {
-        $this->assertEquals('comments', $this->queryParam->getField());
-    }
+        $request = Request::create('/url?include[comments][limit]=5&include[comments][sort]=created_at|desc&include[author]');
+        $queryParam = (new QueryParamBag($request, 'include'))->get('comments');
 
-    public function test_getParams()
-    {
-        $this->assertInstanceOf(ParamBag::class, $this->queryParam->getParams());
+        $this->assertEquals('comments', $queryParam->getField());
+        $this->assertInstanceOf(ParamBag::class, $queryParam->getParams());
+
+        $this->assertTrue($queryParam->getParams()->has('limit'));
+        $this->assertEquals([5], $queryParam->getParams()->get('limit'));
+        $this->assertTrue($queryParam->getParams()->has('sort'));
+        $this->assertEquals(['created_at', 'desc'], $queryParam->getParams()->get('sort'));
+        $this->assertFalse($queryParam->getParams()->has('crap'));
     }
 }

@@ -12,10 +12,10 @@ class QueryParam
     /** @var ParamBag $params */
     private $params = null;
 
-    public function __construct(array $sections)
+    public function __construct(string $field, array $params)
     {
-        $this->field = $sections[0];
-        $this->setParams($sections);
+        $this->field = $field;
+        $this->params = new ParamBag($params);
     }
 
     public function getField(): string
@@ -26,17 +26,5 @@ class QueryParam
     public function getParams(): ParamBag
     {
         return $this->params;
-    }
-
-    private function setParams(array $sections): void
-    {
-        $params = [];
-
-        for ($i = 1; $i < count($sections); $i++) {
-            $paramSections = explode('(', $sections[$i]);
-            $params[$paramSections[0]] = explode('|', str_replace(')', '', $paramSections[1]));
-        }
-
-        $this->params = new ParamBag($params);
     }
 }

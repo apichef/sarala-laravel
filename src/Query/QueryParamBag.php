@@ -14,12 +14,11 @@ class QueryParamBag
 
     public function __construct(Request $request, string $field)
     {
-        $params = $request->filled($field) ? explode(',', $request->get($field)) : [];
-        $this->params = collect($params)->mapWithKeys(function ($include) {
-            $sections = explode(':', $include);
+        $this->params = collect();
 
-            return [$sections[0] => new QueryParam($sections)];
-        });
+        if ($request->filled($field)) {
+            $this->prepareParams($request->get($field));
+        }
     }
 
     public function has($field): bool
@@ -40,5 +39,53 @@ class QueryParamBag
     public function each($callback)
     {
         $this->params->each($callback);
+    }
+
+    protected function prepareParams($value): void
+    {
+        if (is_string($value)) {
+            $this->prepareStringBasedParams($value);
+        } elseif (is_array($value)) {
+            $this->prepareArrayBasedParams($value);
+        }
+    }
+
+    protected function prepareStringBasedParams($value): void
+    {
+        collect(explode(',', $value))->each(function ($param) {
+            $sections = explode(':', $param);
+            $params = $this->prepareStringBasedNestedParams(array_slice($sections, 1));
+
+            return $this->params->put($sections[0], new QueryParam($sections[0], $params));
+        });
+    }
+
+    private function prepareStringBasedNestedParams(array $params): array
+    {
+        return collect($params)->mapWithKeys(function ($param) {
+            $paramSections = explode('(', $param);
+
+            return [$paramSections[0] => explode('|', str_replace(')', '', $paramSections[1]))];
+        })->all();
+    }
+
+    protected function prepareArrayBasedParams($value): void
+    {
+        collect($value)->each(function ($params, $field) {
+            if ($params === "") {
+                $params = [];
+            }
+
+            $params = $this->prepareArrayBasedNestedParams($params);
+
+            return $this->params->put($field, new QueryParam($field, $params));
+        });
+    }
+
+    private function prepareArrayBasedNestedParams(array $params): array
+    {
+        return collect($params)->mapWithKeys(function ($param, $name) {
+            return [$name => explode('|', $param)];
+        })->all();
     }
 }
