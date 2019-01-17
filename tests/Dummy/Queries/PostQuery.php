@@ -4,18 +4,14 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Queries;
 
-use Sarala\Query\QueryMapper;
 use Sarala\Query\QueryParamBag;
 use Illuminate\Database\Eloquent\Builder;
 
 trait PostQuery
 {
-    use QueryMapper;
-
     public function mergeCommonInclude(QueryParamBag $includes)
     {
-        $this->map()
-            ->exact(['tags', 'author'])
+        $this->exact(['tags', 'author'])
             ->alias('comments.author', 'comments.user')
             ->alias('comments', function (Builder $query) use ($includes) {
                 $query->with(['comments' => function ($query) use ($includes) {

@@ -20,7 +20,7 @@ class QueryHelper
         $this->includes = $includes;
     }
 
-    public function exact($fields)
+    public function exact($fields): self
     {
         if (is_string($fields)) {
             if ($this->includes->has($fields)) {
@@ -43,7 +43,7 @@ class QueryHelper
         return $this;
     }
 
-    public function alias(string $name, $value)
+    public function alias(string $name, $value): self
     {
         if (is_callable($value)) {
             $this->query->when($this->includes->has($name), $value);

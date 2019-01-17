@@ -11,8 +11,6 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 abstract class QueryBuilderAbstract implements QueryContract
 {
-    use QueryMapper;
-
     /** @var Request $request */
     protected $request;
 
@@ -28,6 +26,9 @@ abstract class QueryBuilderAbstract implements QueryContract
     /** @var QueryParamBag $filters */
     protected $filters;
 
+    /** @var QueryHelper $queryHelper */
+    private $queryHelper;
+
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -35,6 +36,7 @@ abstract class QueryBuilderAbstract implements QueryContract
         $this->includes = $this->request->includes();
         $this->filters = $this->request->filters();
         $this->query = $this->init();
+        $this->queryHelper = new QueryHelper($this->query, $this->includes);
     }
 
     public function fields()
@@ -55,6 +57,16 @@ abstract class QueryBuilderAbstract implements QueryContract
     public function orderBy(): array
     {
         return [];
+    }
+
+    public function exact($fields): QueryHelper
+    {
+        return $this->queryHelper->exact($fields);
+    }
+
+    public function alias(string $name, $value): QueryHelper
+    {
+        return $this->queryHelper->alias($name, $value);
     }
 
     public function fetch()
