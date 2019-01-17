@@ -72,7 +72,7 @@ class QueryParamBag
     protected function prepareArrayBasedParams($value): void
     {
         collect($value)->each(function ($params, $field) {
-            if ($params === "") {
+            if ($params === '') {
                 $params = [];
             }
 
