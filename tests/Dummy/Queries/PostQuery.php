@@ -15,14 +15,13 @@ trait PostQuery
             ->alias('comments.author', 'comments.user')
             ->alias('comments', function (Builder $query) use ($includes) {
                 $query->with(['comments' => function ($query) use ($includes) {
-                    $params = $includes->get('comments')->getParams();
                     $query
-                        ->when($params->has('limit'), function ($query) use ($params) {
-                            list($limit) = $params->get('limit');
+                        ->when($includes->has('comments.limit'), function ($query) use ($includes) {
+                            list($limit) = $includes->get('comments.limit');
                             $query->limit($limit);
                         })
-                        ->when($params->has('sort'), function ($query) use ($params) {
-                            list($column, $direction) = $params->get('sort');
+                        ->when($includes->has('comments.sort'), function ($query) use ($includes) {
+                            list($column, $direction) = $includes->get('comments.sort');
                             $query->orderBy($column, $direction);
                         });
                 }]);

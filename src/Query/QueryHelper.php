@@ -47,11 +47,13 @@ class QueryHelper
     {
         if (is_callable($value)) {
             $this->query->when($this->includes->has($name), $value);
-        } else {
-            $this->query->when($this->includes->has($name), function (Builder $query) use ($value) {
-                $query->with($value);
-            });
+
+            return $this;
         }
+
+        $this->query->when($this->includes->has($name), function (Builder $query) use ($value) {
+            $query->with($value);
+        });
 
         return $this;
     }

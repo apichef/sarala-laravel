@@ -42,14 +42,14 @@ class BaseController extends Controller
         return call_user_func_array([$this, $method], $parameters);
     }
 
-    protected function responseItem($object, $transformer, $resourceKey = null): JsonResponse
+    public function responseItem($object, $transformer, $resourceKey = null): JsonResponse
     {
         $resource = new Item($object, $transformer, $resourceKey);
 
         return $this->response($this->fractal->createData($resource)->toArray());
     }
 
-    protected function responseCollection($collection, $transformer, $resourceKey = null): JsonResponse
+    public function responseCollection($collection, $transformer, $resourceKey = null): JsonResponse
     {
         $resource = new Collection($collection, $transformer, $resourceKey);
 

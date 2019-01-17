@@ -38,17 +38,17 @@ class ApiRequestInspector
 
     private function sanitizeIncludes()
     {
-        $this->request->includes()->each(function (QueryParam $include) {
-            if (! $this->isIncludeAllowed($include)) {
-                throw new UnauthorizedIncludeException($include->getField(), $this->request->allowedIncludes());
+        $this->request->includes()->each(function ($params, $field) {
+            if (! $this->isIncludeAllowed($field)) {
+                throw new UnauthorizedIncludeException($field, $this->request->allowedIncludes());
             }
         });
     }
 
-    private function isIncludeAllowed(QueryParam $include): bool
+    private function isIncludeAllowed($field): bool
     {
         foreach ($this->request->allowedIncludes() as $allowedInclude) {
-            if (starts_with($allowedInclude, $include->getField())) {
+            if (starts_with($allowedInclude, $field)) {
                 return true;
             }
         }

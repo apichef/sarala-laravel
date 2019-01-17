@@ -5,17 +5,13 @@ declare(strict_types=1);
 namespace Sarala\Query;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class QueryParamBag
 {
-    /** @var Collection $params */
-    private $params;
+    private $params = [];
 
     public function __construct(Request $request, string $field)
     {
-        $this->params = collect();
-
         if ($request->filled($field)) {
             $this->prepareParams($request->get($field));
         }
@@ -23,22 +19,27 @@ class QueryParamBag
 
     public function has($field): bool
     {
-        return $this->params->has($field);
+        return array_has($this->params, $field);
     }
 
     public function keys(): array
     {
-        return $this->params->keys()->all();
+        return array_keys($this->params);
     }
 
-    public function get($field): ?QueryParam
+    public function get($field, $default = null)
     {
-        return $this->params->get($field);
+        return array_get($this->params, $field, $default);
+    }
+
+    public function isEmpty($field)
+    {
+        return empty($this->get($field));
     }
 
     public function each($callback)
     {
-        $this->params->each($callback);
+        collect($this->params)->each($callback);
     }
 
     protected function prepareParams($value): void
@@ -56,7 +57,7 @@ class QueryParamBag
             $sections = explode(':', $param);
             $params = $this->prepareStringBasedNestedParams(array_slice($sections, 1));
 
-            return $this->params->put($sections[0], new QueryParam($sections[0], $params));
+            $this->params[$sections[0]] = $params;
         });
     }
 
@@ -78,7 +79,7 @@ class QueryParamBag
 
             $params = $this->prepareArrayBasedNestedParams($params);
 
-            return $this->params->put($field, new QueryParam($field, $params));
+            $this->params[$field] = $params;
         });
     }
 
