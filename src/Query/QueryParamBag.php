@@ -42,7 +42,7 @@ class QueryParamBag
         collect($this->params)->each($callback);
     }
 
-    protected function prepareParams($value): void
+    private function prepareParams($value): void
     {
         if (is_string($value)) {
             $this->prepareStringBasedParams($value);
@@ -51,7 +51,7 @@ class QueryParamBag
         }
     }
 
-    protected function prepareStringBasedParams($value): void
+    private function prepareStringBasedParams($value): void
     {
         collect(explode(',', $value))->each(function ($param) {
             $sections = explode(':', $param);
@@ -70,7 +70,7 @@ class QueryParamBag
         })->all();
     }
 
-    protected function prepareArrayBasedParams($value): void
+    private function prepareArrayBasedParams($value): void
     {
         collect($value)->each(function ($params, $field) {
             if ($params === '') {

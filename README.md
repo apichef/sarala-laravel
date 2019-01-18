@@ -6,7 +6,7 @@
     [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/?branch=master)
     [![StyleCI](https://github.styleci.io/repos/163845768/shield?branch=master)](https://github.styleci.io/repos/163845768) 
 
-Easily build truly RESTful API with Larave + {json:api}
+Easily build truly RESTful API with Laravel + {json:api}
 
 ## Structure
 

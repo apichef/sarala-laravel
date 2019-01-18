@@ -13,12 +13,12 @@ class PostShowQuery extends QueryBuilderAbstract
 {
     use PostQuery;
 
-    public function init(): Builder
+    protected function init(): Builder
     {
         return Post::where('id', $this->request->route('post')->id);
     }
 
-    public function include(QueryParamBag $includes)
+    protected function include(QueryParamBag $includes)
     {
         $this->mergeCommonInclude($includes);
     }

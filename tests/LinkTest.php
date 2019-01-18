@@ -65,9 +65,7 @@ class LinkTest extends TestCase
             'href' => 'http://localhost/unicorn',
             'meta' => [
                 'method' => 'post',
-                'data' => [
-                    'data' => ['id' => 'p0st7'],
-                ],
+                'data' => ['id' => 'p0st7'],
             ],
         ], $link->data());
         $this->assertEquals('unicorn', $link->name());

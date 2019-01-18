@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Sarala\Query;
 
 use Illuminate\Http\Request;
-use Sarala\Contracts\QueryContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-abstract class QueryBuilderAbstract implements QueryContract
+abstract class QueryBuilderAbstract
 {
     /** @var Request $request */
     protected $request;
@@ -39,22 +38,24 @@ abstract class QueryBuilderAbstract implements QueryContract
         $this->queryHelper = new QueryHelper($this->query, $this->includes);
     }
 
-    public function fields()
+    abstract protected function init(): Builder;
+
+    protected function fields()
     {
         // ..
     }
 
-    public function filter(QueryParamBag $filters)
+    protected function filter(QueryParamBag $filters)
     {
         // ..
     }
 
-    public function include(QueryParamBag $includes)
+    protected function include(QueryParamBag $includes)
     {
         // ..
     }
 
-    public function orderBy(): array
+    protected function sort(): array
     {
         return [];
     }
@@ -94,7 +95,7 @@ abstract class QueryBuilderAbstract implements QueryContract
 
     private function appendSortQuery(): void
     {
-        $allowedSorts = $this->orderBy();
+        $allowedSorts = $this->sort();
 
         $this->request->sorts()->each(function (SortField $field) use ($allowedSorts) {
             if (in_array($field->getField(), $allowedSorts)) {

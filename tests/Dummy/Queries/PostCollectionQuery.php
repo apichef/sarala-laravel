@@ -13,12 +13,12 @@ class PostCollectionQuery extends QueryBuilderAbstract
 {
     use PostQuery;
 
-    public function init(): Builder
+    protected function init(): Builder
     {
         return Post::query();
     }
 
-    public function filter(QueryParamBag $filters)
+    protected function filter(QueryParamBag $filters)
     {
         $this->query
             ->when($filters->has('my'), function ($query) {
@@ -26,7 +26,7 @@ class PostCollectionQuery extends QueryBuilderAbstract
             });
     }
 
-    public function include(QueryParamBag $includes)
+    protected function include(QueryParamBag $includes)
     {
         $this->mergeCommonInclude($includes);
     }

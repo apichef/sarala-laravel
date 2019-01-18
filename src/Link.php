@@ -8,6 +8,7 @@ class Link
 {
     const METHOD_POST = 'post';
     const METHOD_PUT = 'put';
+    const METHOD_PATCH = 'patch';
     const METHOD_DELETE = 'delete';
 
     private $name;
@@ -42,6 +43,11 @@ class Link
         return $this->setMethod(self::METHOD_PUT);
     }
 
+    public function patch()
+    {
+        return $this->setMethod(self::METHOD_PATCH);
+    }
+
     public function delete()
     {
         return $this->setMethod(self::METHOD_DELETE);
@@ -61,9 +67,7 @@ class Link
 
     public function setData(array $data)
     {
-        return $this->meta('data', [
-            'data' => $data,
-        ]);
+        return $this->meta('data', $data);
     }
 
     public function data()

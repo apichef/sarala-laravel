@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Sarala\Http\Requests;
 
-use Sarala\Contracts\ApiRequestContract;
 use Illuminate\Foundation\Http\FormRequest;
+use Sarala\Query\QueryBuilderAbstract;
 
-abstract class ApiRequestAbstract extends FormRequest implements ApiRequestContract
+abstract class ApiRequestAbstract extends FormRequest
 {
     public function authorize(): bool
     {
@@ -22,5 +22,10 @@ abstract class ApiRequestAbstract extends FormRequest implements ApiRequestContr
     public function allowedIncludes(): array
     {
         return [];
+    }
+
+    public function builder(): ?QueryBuilderAbstract
+    {
+        return null;
     }
 }
