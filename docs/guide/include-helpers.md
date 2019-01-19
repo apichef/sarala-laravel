@@ -1,6 +1,6 @@
 ### Include Helpers
 
-There can be many any includes to a resources depending on their relationships, and also sometimes we may need to apply conditions against those includes.
+There may be many includes for a resource, depending on their relationships. Additionally, we may also need to apply conditions against these includes.
 
 ```
 GET /posts/{post}?include=author,comments:limit(5):sort(created_at|desc),tags
@@ -47,7 +47,7 @@ class PostShowQuery extends QueryBuilderAbstract
 }
 ```
 
-Yes, It can get worse than this. 
+And yes, it may even become more complicated than this. 
 
 ### exact
 
@@ -75,7 +75,7 @@ class PostShowQuery extends QueryBuilderAbstract
 
 ### alias
 
-You may use `alias` method when the include and model relation name is **NOT** exactly the same or when you need to play with include sub parameters. It accepts include name as the first parameter and relationship should to be mapped as a string or a callback.
+You may use `alias` method when the include and model relation name is **NOT** exactly the same or when you need to play with include sub parameters. It accepts include name as the first parameter and the relationship it should be mapped to as a string or callback.
 
 ```php
 use Sarala\Query\QueryParamBag;

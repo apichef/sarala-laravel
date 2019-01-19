@@ -4,7 +4,7 @@ sidebarDepth: 0
 
 ### Using Request
 
-This package comes with `ApiRequestAbstract` class. You **MUST** extend when you are implementing request classes. If not I will find you and I will kill you.
+This package comes with `ApiRequestAbstract` class. You **MUST** extend when you are implementing request classes. Not doing so means that you will be unable to take advantage of this package.
 
 ```php
 use Sarala\Http\Requests\ApiRequestAbstract;
@@ -16,7 +16,7 @@ class PostItemRequest extends ApiRequestAbstract
 ```
 
 ### Sanitize includes
-You must implements `allowedIncludes` method on the request class to sanitize includes.
+You must implement `allowedIncludes` method on the request class to sanitize includes.
 
 ```php
 use Sarala\Http\Requests\ApiRequestAbstract;
@@ -40,7 +40,7 @@ class PostItemRequest extends ApiRequestAbstract
 
 ### Ask for [QueryBuilder](/guide/query-builder.md) from request. (Optional)
 
-You may implements `builder` method on the request class. And it should return a child of QueryBuilderAbstract
+You may implement `builder` method on the request class. And it should return a child of QueryBuilderAbstract.
 
 ```php
 use Sarala\Http\Requests\ApiRequestAbstract;

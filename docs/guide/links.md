@@ -11,9 +11,9 @@ This package comes with `Links` class to help appending links to the resource.
 - [Add link always](#add-link-always)
 - [Conditionally add link](#conditionally-add-link)
 
-### Add link always
+### Always add a link
 
-You may use `push` method to add a link to Links collection without a condition. It accepts a [Link](/guide/link.md) instance as the only parameter.
+You may use `push` method to add a link to the Links collection without a condition. It accepts a [Link](/guide/link.md) instance as the only parameter.
 
 ```php
 use Sarala\Http\Requests\ApiRequestAbstract;
@@ -32,7 +32,7 @@ class PostItemRequest extends ApiRequestAbstract
 }
 ```
 
-### Conditionally add link
+### Conditionally add a link
 
 You may use `when` method to add a link to Links collection conditionally. It accepts a boolean as the first parameter and [Link](/guide/link.md) instance as the second parameter.
 

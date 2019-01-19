@@ -27,7 +27,7 @@ In addition to authorization and validation of request:
 
 ##### 4 Controller →
 
-- Inspecting request
+- Inspect request
 - Prepare json:api serializer
 
 ##### 5 Transformer →
@@ -37,4 +37,4 @@ In addition to authorization and validation of request:
 
 ##### 6 Controller →
 
-- Prepare response send back to client
+- Prepare response to be sent back to the client
