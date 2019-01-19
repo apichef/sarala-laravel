@@ -25,4 +25,4 @@ Route::middleware(['api_headers'])->group(function () {
 
 ### TODO:
 
-Currently it validates only `Content-Type` header. `Accept` header validation needs to be implemented. 
+Currently it only validates `Content-Type` header. `Accept` header validation is to be implemented. 

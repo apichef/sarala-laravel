@@ -4,11 +4,11 @@ sidebarDepth: 0
 
 ### Exception
 
-This package comes with `ApiException` class. You **MUST** extend when you are implementing Exception classes.
+This package comes with `ApiException` class. You **MUST** extend this if you are implementing exception classes.
 
 > Reference: [Error Objects](https://jsonapi.org/format/#error-objects)
 
-You **MUST** implement `status` and `title` methods. Implementing other methods will make your REST API perfect :v: 
+You **MUST** implement `status` and `title` methods. Implementing the other methods will make your REST API perfect by providing more helpful information.:v: 
 
 ```php
 use Sarala\Exceptions\ApiException;

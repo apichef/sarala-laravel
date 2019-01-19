@@ -4,9 +4,11 @@
 - [get](#get)
 - [isEmpty](#isempty)
 
-`filter` and  `include` methods on the QueryBuilder will receive `QueryParamBag` instance as the only parameter.
+The `filter` and  `include` methods on the QueryBuilder will receive a `QueryParamBag` instance as the only parameter.
 
-This has the knowledge of reading array based and string based request query strings:
+This `QueryParamBag` has the capability to parse array-based and string-based request query strings.
+
+Eg:
 
 ```
 GET '/posts?include=comments:limit(5):sort(created_at|desc),author'
@@ -28,7 +30,7 @@ $queryParam = new QueryParamBag($request, 'include');
 $queryParam->has('comments'); // true
 $queryParam->has('comments.limit'); // true
 $queryParam->has('comments.sort'); // true
-$queryParam->has('comments.crap'); // false
+$queryParam->has('comments.foo'); // false
 $queryParam->has('author'); // true
 ```
 

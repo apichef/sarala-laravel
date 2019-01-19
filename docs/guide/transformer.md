@@ -4,7 +4,7 @@ sidebarDepth: 0
 
 ### Transformer
 
-This package is a [Fractal](http://fractal.thephpleague.com/) wrapper. So the Transformer api is same as [official documentation](https://fractal.thephpleague.com/transformers/).
+This package is a [Fractal](http://fractal.thephpleague.com/) wrapper. So the Transformer API is same as [official documentation](https://fractal.thephpleague.com/transformers/).
 
 > **NOTE** instead of `transform` method you **MUST** implement `data` method. You may implement `links` method, if there are any links to be append to links object of the resource json object.   
 
@@ -54,9 +54,9 @@ class PostTransformer extends TransformerAbstract
 
 ### Append Links
 
-[Hypermedia Controls](https://martinfowler.com/articles/richardsonMaturityModel.html) is one of the most important thing that you must implements in your REST API if not it is not gonna be a REST API. Take a break and read [Build APIs You Won't Hate](https://apisyouwonthate.com/books/build-apis-you-wont-hate.html)
+[Hypermedia Controls](https://martinfowler.com/articles/richardsonMaturityModel.html) is one of the most important things that you must implement in your REST API. If not, you cannot consider it a REST API. Take a break and read [Build APIs You Won't Hate](https://apisyouwonthate.com/books/build-apis-you-wont-hate.html).
 
-`links` method will receive model instance as the first parameter and authenticated user as the second parameter. It should return a Links instance. 
+The `links` method will receive a model instance as the first parameter and the authenticated User as the second parameter. It should return a `Links` instance. 
 
 ```php
 use Sarala\Http\Requests\ApiRequestAbstract;

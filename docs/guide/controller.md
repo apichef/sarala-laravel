@@ -1,6 +1,6 @@
 ### Controller
 
-This package comes with `BaseController` class, which does the JsonApiSerializer preparation and request monitoring. You **MUST** extend the `BaseController` when you are implementing API resource controllers:
+This package comes with a `BaseController` class, which does the JsonApiSerializer preparation and request monitoring. You **MUST** extend the `BaseController` when you are implementing API resource controllers:
 
 ```php
 use Sarala\Http\Controllers\BaseController;
@@ -13,7 +13,7 @@ class PostController extends BaseController
 
 ### Response
 
-To transform and response you may use `responseItem` and `responseCollection` accordingly. Both the methods accepts data to be transformed, transformer instance and resource key respectively. 
+To transform the response you may use `responseItem` and `responseCollection` accordingly. Both the methods accepts data to be transformed, transformer instance and resource key respectively. 
 
 ```php
 use Sarala\Dummy\Post;
