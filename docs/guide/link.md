@@ -45,7 +45,7 @@ Link::make('delete_comment', route('post.tags.index', $post))
 You may use `post`, `put`, `patch` and `delete` method to method to the meta data.
 
 ```php
-Link::make('lags', route('post.tags.index', $post))
+Link::make('delete_comment', route('post.tags.index', $post))
     ->delete();
 ```
 ```
@@ -64,7 +64,7 @@ Link::make('lags', route('post.tags.index', $post))
 You may use `setData` method to set data key of meta data. Developers who consume your API will thank you for it. :P
 
 ```php
-Link::make('lags', route('post.tags.index', $post))
+Link::make('delete_comment', route('post.tags.index', $post))
     ->delete()
     ->setData([
         ['type' => 'comments', 'id' => $comment->id],
