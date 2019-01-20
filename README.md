@@ -31,9 +31,7 @@ $ composer require sarala-io/sarala
 
 ## Usage
 
-```
-// soon
-```
+### [API Documentation](https://sarala-io.github.io/sarala-laravel-docs/guide/) 
 
 ## Change log
 
