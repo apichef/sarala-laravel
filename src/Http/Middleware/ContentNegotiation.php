@@ -5,16 +5,28 @@ declare(strict_types=1);
 namespace Sarala\Http\Middleware;
 
 use Closure;
+use Sarala\Exceptions\NotAcceptableMediaTypeHttpException;
 use Sarala\Exceptions\UnsupportedMediaTypeHttpException;
+use Sarala\Sarala;
 
 class ContentNegotiation
 {
     public function handle($request, Closure $next)
     {
-        if (! str_contains($request->header('Content-Type'), 'application/vnd.api+json')) {
+        $supportedMediaTypes = Sarala::resolve()->getSupportedMediaTypes();
+
+        if (! in_array($request->header('Content-Type'), $supportedMediaTypes)) {
             throw new UnsupportedMediaTypeHttpException();
         }
 
-        return $next($request);
+        if (! $request->accepts($supportedMediaTypes)) {
+            throw new NotAcceptableMediaTypeHttpException();
+        }
+
+        $response = $next($request);
+
+        $response->header('Content-Type', $request->header('Accept'));
+
+        return $response;
     }
 }

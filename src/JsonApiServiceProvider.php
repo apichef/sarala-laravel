@@ -2,6 +2,7 @@
 
 namespace Sarala;
 
+use League\Fractal\Serializer\DataArraySerializer;
 use Sarala\Query\Sorts;
 use Sarala\Query\Fields;
 use League\Fractal\Manager;
@@ -37,8 +38,16 @@ class JsonApiServiceProvider extends ServiceProvider
 
     public function register(): void
     {
+        $this->app->bind(JsonApiSerializer::class, function ($app) {
+            return new JsonApiSerializer(config('sarala.base_url'));
+        });
+
+        $this->app->bind(DataArraySerializer::class, function ($app) {
+            return new DataArraySerializer();
+        });
+
         $this->app->bind(Manager::class, function ($app) {
-            return (new Manager())->setSerializer(new JsonApiSerializer(config('sarala.base_url')));
+            return (new Manager())->setSerializer(Sarala::resolve()->getSerializer());
         });
     }
 }

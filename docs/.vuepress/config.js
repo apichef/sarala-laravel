@@ -1,7 +1,7 @@
 module.exports = {
     base: '/sarala-laravel-docs/',
     title: 'Sarala Laravel',
-    description: '{json:api} Laravel Companion',
+    description: 'Laravel RESTful API Companion',
     head: [
         ['link', { rel: 'icon', href: '/images/sarala-logo.png' }]
     ],

@@ -18,24 +18,56 @@ When published, [the `config/sarala.php` config](https://github.com/sarala-io/sa
 
 ```php
 return [
+
     /*
-     * League\Fractal\Serializer\JsonApiSerializer will use this value to
-     * as a prefix for generated links. Set to `null` to disable this.
-     */
+    |--------------------------------------------------------------------------
+    | API Base URL
+    |--------------------------------------------------------------------------
+    |
+    | League\Fractal\Serializer\JsonApiSerializer will use this value to as a
+    | prefix for generated links. Set to `null` to disable this.
+    |
+    */
+
     'base_url' => url('/api'),
 
     /*
-     * This guard will be used when fetching the authenticated user to pass
-     * to the links method on the transformer.
-     */
+    |--------------------------------------------------------------------------
+    | API Request Authentication Guard URL
+    |--------------------------------------------------------------------------
+    |
+    | This guard will be used when fetching the authenticated user to pass to the
+    | links method in the transformer.
+    |
+    */
+
     'guard' => null,
 
     /*
-     * When sending back serialized data to the client this header(s) will
-     * be appended to the response.
-     */
-    'response_headers' => [
-        'Content-Type' => 'application/vnd.api+json',
-    ],
+    |--------------------------------------------------------------------------
+    | Content Negotiation Handlers
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define all of the 'handlers' that your API will support.
+    | The media_type setting within each handler is used to validate the
+    | Content-Type and Accept headers sent by the client against the supported
+    | media-types. Based on the given Accept header, the relevant handler's
+    | serializer setting is used to serialize the response.
+    |
+    */
+
+    'handlers' => [
+
+        'json' => [
+            'media_type' => 'application/json',
+            'serializer' => \League\Fractal\Serializer\DataArraySerializer::class,
+        ],
+
+        'json_api' => [
+            'media_type' => 'application/vnd.api+json',
+            'serializer' => \League\Fractal\Serializer\JsonApiSerializer::class,
+        ],
+
+    ]
 ];
 ```

@@ -60,8 +60,8 @@ class BaseController extends Controller
         return $this->response($this->fractal->createData($resource)->toArray());
     }
 
-    private function response($data = [], $status = 200, $headers = [])
+    private function response($data = [], $status = 200)
     {
-        return response()->json($data, $status, array_merge(config('sarala.response_headers'), $headers));
+        return response()->json($data, $status);
     }
 }
