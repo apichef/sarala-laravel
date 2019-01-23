@@ -2,7 +2,6 @@
 
 namespace Sarala;
 
-use League\Fractal\Serializer\DataArraySerializer;
 use Sarala\Query\Sorts;
 use Sarala\Query\Fields;
 use League\Fractal\Manager;
@@ -10,6 +9,7 @@ use Illuminate\Http\Request;
 use Sarala\Query\QueryParamBag;
 use Illuminate\Support\ServiceProvider;
 use League\Fractal\Serializer\JsonApiSerializer;
+use League\Fractal\Serializer\DataArraySerializer;
 
 class JsonApiServiceProvider extends ServiceProvider
 {
