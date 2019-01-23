@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Sarala\Http\Middleware\ContentNegotiation;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Sarala\Http\Middleware\ETag;
 
 class TestCase extends BaseTestCase
 {
@@ -53,17 +54,17 @@ class TestCase extends BaseTestCase
     protected function registerRoutes(): void
     {
         Route::namespace('Sarala\Dummy\Http\Controllers')
-            ->middleware([SubstituteBindings::class, ContentNegotiation::class])
+            ->middleware([SubstituteBindings::class, ContentNegotiation::class, ETag::class])
             ->group(function () {
                 require __DIR__.'/routes.php';
             });
     }
 
-    public function apiRequest($method, $uri, array $data = [])
+    public function apiRequest($method, $uri, array $data = [], $headers = [])
     {
-        return $this->json($method, $uri, $data, [
+        return $this->json($method, $uri, $data, array_merge([
             'CONTENT_TYPE' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
-        ]);
+        ], $headers));
     }
 }

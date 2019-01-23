@@ -1,10 +1,13 @@
 {
     "name": "sarala-io/sarala",
     "type": "library",
-    "description": "{json:api} Laravel companion",
+    "description": "Laravel RESTful API Companion",
     "keywords": [
         "sarala-io",
-        "sarala"
+        "sarala",
+        "RESTful",
+        "REST",
+        "API"
     ],
     "homepage": "https://github.com/sarala-io/sarala",
     "license": "MIT",
