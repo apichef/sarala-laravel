@@ -27,10 +27,10 @@ class Sarala
             ->all();
     }
 
-    public static function resolve(): Sarala
+    public static function resolve(): self
     {
         if (! isset(self::$instance)) {
-            self::$instance = new Sarala();
+            self::$instance = new self();
         }
 
         return self::$instance;

@@ -39,7 +39,7 @@ class ContentNegotiationTest extends TestCase
 
         $this->get(route('posts.show', $post), [
             'Content-Type' => 'application/json',
-            'Accept' => 'application/x-xml'
+            'Accept' => 'application/x-xml',
         ])
         ->assertStatus(406)
         ->assertJson([

@@ -27,11 +27,11 @@ class TestCase extends BaseTestCase
         $app['config']->set('sarala.handlers', [
             'json' => [
                 'media_type' => 'application/json',
-                'serializer' => \League\Fractal\Serializer\DataArraySerializer::class
+                'serializer' => \League\Fractal\Serializer\DataArraySerializer::class,
             ],
             'json_api' => [
                 'media_type' => 'application/vnd.api+json',
-                'serializer' => \League\Fractal\Serializer\JsonApiSerializer::class
+                'serializer' => \League\Fractal\Serializer\JsonApiSerializer::class,
             ],
         ]);
 
