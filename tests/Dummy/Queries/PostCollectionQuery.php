@@ -30,4 +30,11 @@ class PostCollectionQuery extends QueryBuilderAbstract
     {
         $this->mergeCommonInclude($includes);
     }
+
+    protected function sort(): array
+    {
+        return [
+            'published_at'
+        ];
+    }
 }

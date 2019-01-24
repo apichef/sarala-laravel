@@ -112,6 +112,14 @@ abstract class QueryBuilderAbstract
 
         $paginator->appends($this->request->except('page'));
 
+        foreach ($this->request->get('filter', []) as $key => $value) {
+            if (is_null($value)) {
+                $value = '';
+            }
+
+            $paginator->appends("filter[{$key}]", $value);
+        }
+
         if (! is_null($this->request->input('page.size'))) {
             $paginator->appends('page[size]', $this->request->input('page.size'));
         }
