@@ -23,7 +23,7 @@ class EtagTest extends TestCase
         $r = $this->apiRequest('get', route('posts.show', $post));
 
         $this->apiRequest('get', route('posts.show', $post), [], [
-            'If-None-Match' => $r->headers->get('etag')
+            'If-None-Match' => $r->headers->get('etag'),
         ])
         ->assertStatus(304);
     }
