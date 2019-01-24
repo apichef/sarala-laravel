@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala;
 
+use League\Fractal\Serializer\DataArraySerializer;
+
 class Sarala
 {
     private static $instance;
@@ -38,7 +40,9 @@ class Sarala
 
     public function getSerializer()
     {
-        return app()->make($this->handler['serializer']);
+        $serializer = is_null($this->handler) ? DataArraySerializer::class : $this->handler['serializer'];
+
+        return app()->make($serializer);
     }
 
     public function getSupportedMediaTypes()
