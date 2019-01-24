@@ -42,9 +42,9 @@ class PaginationTest extends TestCase
                         ],
                         'links' => [
                             'self',
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ])
             ->assertJsonFragment([
                 'meta' => [
@@ -54,8 +54,8 @@ class PaginationTest extends TestCase
                         'per_page' => 4,
                         'current_page' => 1,
                         'total_pages' => 3,
-                    ]
-                ]
+                    ],
+                ],
             ])
             ->assertJsonFragment([
                 'links' => [
@@ -63,7 +63,7 @@ class PaginationTest extends TestCase
                     'first' => 'http://localhost/posts?page%5Bsize%5D=4&page%5Bnumber%5D=1',
                     'next' => 'http://localhost/posts?page%5Bsize%5D=4&page%5Bnumber%5D=2',
                     'last' => 'http://localhost/posts?page%5Bsize%5D=4&page%5Bnumber%5D=3',
-                ]
+                ],
             ]);
     }
 
@@ -87,7 +87,7 @@ class PaginationTest extends TestCase
                     'first' => 'http://localhost/posts?include=comments&sort=-published_at&filter%5Bdoes%5D=nothing&filter%5Bmy%5D=&filter%5Bdoes%5D=nothing&page%5Bsize%5D=4&page%5Bnumber%5D=1',
                     'next' => 'http://localhost/posts?include=comments&sort=-published_at&filter%5Bdoes%5D=nothing&filter%5Bmy%5D=&filter%5Bdoes%5D=nothing&page%5Bsize%5D=4&page%5Bnumber%5D=2',
                     'last' => 'http://localhost/posts?include=comments&sort=-published_at&filter%5Bdoes%5D=nothing&filter%5Bmy%5D=&filter%5Bdoes%5D=nothing&page%5Bsize%5D=4&page%5Bnumber%5D=3',
-                ]
+                ],
             ]);
     }
 }

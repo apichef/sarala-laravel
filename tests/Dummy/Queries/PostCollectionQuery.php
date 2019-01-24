@@ -34,7 +34,7 @@ class PostCollectionQuery extends QueryBuilderAbstract
     protected function sort(): array
     {
         return [
-            'published_at'
+            'published_at',
         ];
     }
 }

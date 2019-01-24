@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Sarala;
 
+use Sarala\Http\Middleware\ETag;
 use Illuminate\Support\Facades\Route;
 use Sarala\Http\Middleware\ContentNegotiation;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Illuminate\Routing\Middleware\SubstituteBindings;
-use Sarala\Http\Middleware\ETag;
 
 class TestCase extends BaseTestCase
 {
