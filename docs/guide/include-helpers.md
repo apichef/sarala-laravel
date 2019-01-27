@@ -47,7 +47,14 @@ class PostShowQuery extends QueryBuilderAbstract
 }
 ```
 
-And yes, it may even become more complicated than this. 
+And yes, it may even become more complicated than this.
+
+To implement those complex queries in a simple and clean way `QueryBuilderAbstract` has few helper functions.
+
+- [exact](#exact)
+- [alias](#alias)
+- [countExact](#countexact)
+- [countAlias](#countalias)
 
 ### exact
 
@@ -92,20 +99,84 @@ class PostShowQuery extends QueryBuilderAbstract
             'author',
             'tags',
         ])
-        ->alias('comments.author', 'comments.user')
-        ->alias('comments', function (Builder $query) use ($includes) {
-            $query->with(['comments' => function ($query) use ($includes) {
-                $query
-                    ->when($includes->has('comments.limit'), function ($query) use ($includes) {
-                        list($limit) = $includes->get('comments.limit');
-                        $query->limit($limit);
-                    })
-                    ->when($includes->has('comments.sort'), function ($query) use ($includes) {
-                        list($column, $direction) = $includes->get('comments.sort');
-                        $query->orderBy($column, $direction);
-                    });
-            }]);
-        });
+        ->alias([
+            'comments.author' => 'comments.user',
+            'comments' => function (Builder $query) use ($includes) {
+                $query->with(['comments' => function ($query) use ($includes) {
+                    $query
+                        ->when($includes->has('comments.limit'), function ($query) use ($includes) {
+                            list($limit) = $includes->get('comments.limit');
+                            $query->limit($limit);
+                        })
+                        ->when($includes->has('comments.sort'), function ($query) use ($includes) {
+                            list($column, $direction) = $includes->get('comments.sort');
+                            $query->orderBy($column, $direction);
+                        });
+                }]);
+            }
+        ]);
+    }
+}
+```
+
+### countExact
+
+You may use `countExact` method when the include (without `_count` suffix if available) and model relation name is exactly the same. It accepts a string or list of relationships as a array of string as the only parameter.
+
+```
+GET /posts/{post}?include=comments_count,tags_count
+```
+
+```php
+use Sarala\Query\QueryParamBag;
+use Sarala\Query\QueryBuilderAbstract;
+use Illuminate\Database\Eloquent\Builder;
+
+class PostShowQuery extends QueryBuilderAbstract
+{
+    // ...
+    
+    protected function include(QueryParamBag $includes)
+    {
+        $this->countExact('comments_count');
+        $this->countExact('tags_count');
+    
+        // OR
+    
+        $this->countExact([
+            'comments_count',
+            'tags_count',
+        ]);
+    }
+}
+```
+
+### countAlias
+
+You may use `countAlias` method when the include (without `_count` suffix if available) and model relation name is **NOT** exactly the same. It accepts include name as the first parameter and the relationship it should be mapped to as a string or associative array key and value as the only parameter, key as include name relationship it should be mapped to as the value.
+
+```
+GET /posts/{post}?include=response_count
+```
+
+```php
+use Sarala\Query\QueryParamBag;
+use Sarala\Query\QueryBuilderAbstract;
+use Illuminate\Database\Eloquent\Builder;
+
+class PostShowQuery extends QueryBuilderAbstract
+{
+    // ...
+    
+    protected function include(QueryParamBag $includes)
+    {
+        $this->countAlias('response_count', 'comments');
+        
+        // OR
+        
+        $this->countAlias([
+            'response_count' => 'comments',
+        ]);
     }
 }
 ```

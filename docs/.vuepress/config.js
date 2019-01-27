@@ -16,8 +16,8 @@ module.exports = {
 
         sidebar: {
             '/guide/': [
-                ['/guide/', 'Installation'],
-                ['/guide/what-it-does.md', 'What it does'],
+                ['/guide/', 'Introduction'],
+                ['/guide/installation.md', 'Installation'],
                 ['/guide/middleware.md', 'Middleware'],
                 ['/guide/request.md', 'Request'],
                 ['/guide/query-builder.md', 'Query Builder'],

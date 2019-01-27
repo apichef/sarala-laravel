@@ -2,72 +2,30 @@
 sidebarDepth: 0
 ---
 
-### Installation
+## Sarala
 
- You can install the package via composer:
-``` bash
-$ composer require sarala-io/sarala
-```
+Sarala is a opinionated Laravel companion package, enables you to build truly RESTful APIs which consumers will love using. 
 
-You can optionally publish the config file with:
-``` bash
-$ php artisan vendor:publish --provider="Sarala\JsonApiServiceProvider" --tag="config"
-```
+### Content Negotiation Support
 
-When published, [the `config/sarala.php` config](https://github.com/sarala-io/sarala-laravel/blob/master/config/sarala.php) file contains:
+It is seamless. Sarala is intelligent enough to validate headers and response according client request. And it is easy to introduce new media types to your API. Simple implement your [custom serializers](https://fractal.thephpleague.com/serializers/#custom-serializers) and add it to [handlers](/guide/installation.md).
 
-```php
-return [
+### Easy Query Building
 
-    /*
-    |--------------------------------------------------------------------------
-    | API Base URL
-    |--------------------------------------------------------------------------
-    |
-    | League\Fractal\Serializer\JsonApiSerializer will use this value to as a
-    | prefix for generated links. Set to `null` to disable this.
-    |
-    */
+Sarala provides a clean way to translate complex API requests to Eloquent query by introducing [Request Query Builders](/guide/query-builder.md). Query builder [helper methods](/guide/include-helpers.md) will make it even easier while Sarala [QueryParamBag](/guide/query-param-bag.md) give you a simple api to read complex request query strings.
 
-    'base_url' => url('/api'),
+### Security Focus
 
-    /*
-    |--------------------------------------------------------------------------
-    | API Request Authentication Guard URL
-    |--------------------------------------------------------------------------
-    |
-    | This guard will be used when fetching the authenticated user to pass to the
-    | links method in the transformer.
-    |
-    */
+Laravel already protects us from OWASP issues. But as we enable to include related resources via API requests, those includes must go through a check.
 
-    'guard' => null,
+Sarala [Request](/guide/request.me) provides a simple way to sanitizing includes.
 
-    /*
-    |--------------------------------------------------------------------------
-    | Content Negotiation Handlers
-    |--------------------------------------------------------------------------
-    |
-    | Here you may define all of the 'handlers' that your API will support.
-    | The media_type setting within each handler is used to validate the
-    | Content-Type and Accept headers sent by the client against the supported
-    | media-types. Based on the given Accept header, the relevant handler's
-    | serializer setting is used to serialize the response.
-    |
-    */
+### Performance Focus
 
-    'handlers' => [
+Just by using [Sarala Query Builders](/guide/query-builder.md) you are protected against making N+1 queries while transforming data. Yes it is a huge win!
 
-        'json' => [
-            'media_type' => 'application/json',
-            'serializer' => \League\Fractal\Serializer\DataArraySerializer::class,
-        ],
+[ETag]() allows caches to be more efficient, and saves bandwidth, as a web server does not need to send a full response if the content has not changed.
 
-        'json_api' => [
-            'media_type' => 'application/vnd.api+json',
-            'serializer' => \League\Fractal\Serializer\JsonApiSerializer::class,
-        ],
+### HATEOAS Focus
 
-    ]
-];
-```
+[Hypermedia Controls](https://martinfowler.com/articles/richardsonMaturityModel.html) is the most important fact that your API must have to become a truly RESTful API. [Links](/guide/links.me) and [Link](/guide/link.me) will help you with that.   
