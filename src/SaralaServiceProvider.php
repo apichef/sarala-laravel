@@ -34,6 +34,10 @@ class SaralaServiceProvider extends ServiceProvider
         Request::macro('sorts', function () {
             return new Sorts($this);
         });
+
+        Request::macro('allowedIncludes', function () {
+            return [];
+        });
     }
 
     public function register(): void

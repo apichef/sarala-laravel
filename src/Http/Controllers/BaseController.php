@@ -37,9 +37,11 @@ class BaseController extends Controller
 
     public function callAction($method, $parameters)
     {
-        (new ApiRequestInspector($parameters))->inspect();
+        if (request()->filled('include')) {
+            (new ApiRequestInspector($parameters))->inspect();
+        }
 
-        return call_user_func_array([$this, $method], $parameters);
+        return parent::callAction($method, $parameters);
     }
 
     public function responseItem($object, $transformer, $resourceKey = null): JsonResponse

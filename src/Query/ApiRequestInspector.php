@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
+use Illuminate\Http\Request;
 use Sarala\Http\Requests\ApiRequestAbstract;
 use Sarala\Exceptions\UnauthorizedIncludeException;
-use Sarala\Exceptions\ApiRequestContractNotImplementedException;
 
 class ApiRequestInspector
 {
@@ -26,13 +26,9 @@ class ApiRequestInspector
     private function setRequestReceivedAtApiEndpoint(array $parameters)
     {
         foreach ($parameters as $parameter) {
-            if ($parameter instanceof ApiRequestAbstract) {
+            if ($parameter instanceof Request) {
                 $this->request = $parameter;
             }
-        }
-
-        if (is_null($this->request)) {
-            throw new ApiRequestContractNotImplementedException();
         }
     }
 
