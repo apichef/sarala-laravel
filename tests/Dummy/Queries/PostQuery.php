@@ -26,7 +26,7 @@ trait PostQuery
                                 $query->orderBy($column, $direction);
                             });
                     }]);
-                }
+                },
             ])
             ->countExact([
                 'comments_count',

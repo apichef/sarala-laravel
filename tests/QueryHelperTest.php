@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Illuminate\Support\Facades\DB;
 use Sarala\Dummy\Post;
 use Illuminate\Http\Request;
 use Sarala\Query\QueryHelper;
 use Sarala\Query\QueryParamBag;
+use Illuminate\Support\Facades\DB;
 
 class QueryHelperTest extends TestCase
 {
@@ -144,7 +144,7 @@ class QueryHelperTest extends TestCase
         $query = Post::query();
 
         (new QueryHelper($query, $includes))->countAlias([
-            'response_count' => 'comments'
+            'response_count' => 'comments',
         ]);
 
         DB::enableQueryLog();
