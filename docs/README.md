@@ -12,6 +12,13 @@ footer: MIT Licensed | Copyright © 2018-present Milroy Fraser
 
 ---
 
+#### `[v0.1.6]` - 2019-01-28
+
+##### Changed 
+-  [sanitizeIncludes only when needed](https://github.com/sarala-io/sarala-laravel/commit/82f2f86b0c90b5a590633253841beba787fa2b33)
+
+---
+
 #### `[v0.1.5]` - 2019-01-27
 
 ##### Added 
