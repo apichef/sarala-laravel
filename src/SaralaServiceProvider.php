@@ -11,7 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use League\Fractal\Serializer\JsonApiSerializer;
 use League\Fractal\Serializer\DataArraySerializer;
 
-class JsonApiServiceProvider extends ServiceProvider
+class SaralaServiceProvider extends ServiceProvider
 {
     public function boot()
     {

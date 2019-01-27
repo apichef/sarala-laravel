@@ -20,6 +20,8 @@ class PostCollectionRequest extends ApiRequestAbstract
         return [
             'tags',
             'comments.author',
+            'tags_count',
+            'comments_count',
             'author',
         ];
     }

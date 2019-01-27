@@ -47,7 +47,7 @@ class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            JsonApiServiceProvider::class,
+            SaralaServiceProvider::class,
         ];
     }
 
