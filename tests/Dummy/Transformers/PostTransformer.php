@@ -15,6 +15,8 @@ class PostTransformer extends TransformerAbstract
         'author',
         'tags',
         'comments',
+        'tags_count',
+        'comments_count',
     ];
 
     public function data(Post $post): array
@@ -56,5 +58,15 @@ class PostTransformer extends TransformerAbstract
     public function includeComments(Post $post)
     {
         return $this->collection($post->comments, new CommentTransformer(), 'comments');
+    }
+
+    public function includeTagsCount(Post $post)
+    {
+        return $this->primitive($post->tags_count);
+    }
+
+    public function includeCommentsCount(Post $post)
+    {
+        return $this->primitive($post->comments_count);
     }
 }

@@ -22,39 +22,87 @@ class QueryHelper
 
     public function exact($fields): self
     {
+        return $this->appendExact($fields, 'appendQuery');
+    }
+
+    public function countExact($fields)
+    {
+        return $this->appendExact($fields, 'appendCountQuery');
+    }
+
+    private function appendExact($fields, $method)
+    {
         if (is_string($fields)) {
-            if ($this->includes->has($fields)) {
-                $this->query->with($fields);
-            }
+            $this->{$method}($fields, $fields);
 
             return $this;
         }
 
         if (! is_array($fields)) {
             throw new \InvalidArgumentException(
-                'The exact() method expects a string or an array. '.gettype($fields).' given'
+                'Expects a string or an array. '.gettype($fields).' given'
             );
         }
 
         foreach (array_intersect($this->includes->keys(), $fields) as $field) {
-            $this->query->with($field);
+            $this->{$method}($field, $field);
         }
 
         return $this;
     }
 
-    public function alias(string $name, $value): self
+    public function alias($fields, $value = null): self
+    {
+        return $this->appendAlias($fields, $value, 'appendQuery');
+    }
+
+    public function countAlias($fields, $value = null)
+    {
+        return $this->appendAlias($fields, $value, 'appendCountQuery');
+    }
+
+    private function appendAlias($fields, $value, $method): self
+    {
+        if (is_array($fields) && is_null($value)) {
+            foreach ($fields as $field => $value) {
+                $this->{$method}($field, $value);
+            }
+        }
+
+        if (is_string($fields) && ! is_null($value)) {
+            $this->{$method}($fields, $value);
+        }
+
+        return $this;
+    }
+
+    private function appendCountQuery($field, $relationship)
+    {
+        if (is_string($relationship)) {
+            $this->appendQuery($field, function ($query) use ($relationship) {
+                $relationship = str_replace_last('Count', '', camel_case($relationship));
+
+                $query->withCount($relationship);
+            });
+
+            return;
+        }
+
+        throw new \InvalidArgumentException(
+            'countAlias() method expects second parameter to be a string. '.gettype($relationship).' given'
+        );
+    }
+
+    private function appendQuery($name, $value)
     {
         if (is_callable($value)) {
             $this->query->when($this->includes->has($name), $value);
 
-            return $this;
+            return;
         }
 
         $this->query->when($this->includes->has($name), function (Builder $query) use ($value) {
             $query->with($value);
         });
-
-        return $this;
     }
 }

@@ -49,7 +49,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Sarala\\JsonApiServiceProvider"
+                "Sarala\\SaralaServiceProvider"
             ]
         },
         "branch-alias": {

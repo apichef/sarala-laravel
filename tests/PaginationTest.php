@@ -69,8 +69,6 @@ class PaginationTest extends TestCase
 
     public function test_it_appends_all_query_parameters_to_pagination_links()
     {
-        $this->withoutExceptionHandling();
-
         $user = factory(User::class)->create();
 
         factory(Post::class, 10)->create([
