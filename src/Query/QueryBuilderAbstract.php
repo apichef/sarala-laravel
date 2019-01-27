@@ -70,12 +70,12 @@ abstract class QueryBuilderAbstract
         return $this->queryHelper->countExact($fields);
     }
 
-    public function alias($fields, $value): QueryHelper
+    public function alias($fields, $value = null): QueryHelper
     {
         return $this->queryHelper->alias($fields, $value);
     }
 
-    public function countAlias($fields, $value): QueryHelper
+    public function countAlias($fields, $value = null): QueryHelper
     {
         return $this->queryHelper->countAlias($fields, $value);
     }
