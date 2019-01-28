@@ -6,6 +6,16 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ---
 
+#### `[v0.1.7]` - 2019-01-29
+
+##### Added
+- [introduced meta method to the transformer](https://sarala-io.github.io/sarala-laravel-docs/guide/transformer.html#meta-data)
+
+##### Fixed 
+-  [sanitizeIncludes only when needed](https://github.com/sarala-io/sarala-laravel/commit/82f2f86b0c90b5a590633253841beba787fa2b33)
+
+---
+
 #### `[v0.1.6]` - 2019-01-28
 
 ##### Changed 

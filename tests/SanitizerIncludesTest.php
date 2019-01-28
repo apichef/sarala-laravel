@@ -8,7 +8,7 @@ class SanitizerIncludesTest extends TestCase
 {
     public function test_it_sanitizer_include()
     {
-        $this->apiRequest('get', route('posts.index').'?include=crap')
+        $this->withJsonApiHeaders('get', route('posts.index').'?include=crap')
             ->assertStatus(403)
             ->assertJson([
                 'error' => [

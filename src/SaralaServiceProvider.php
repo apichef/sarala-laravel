@@ -28,7 +28,7 @@ class SaralaServiceProvider extends ServiceProvider
         });
 
         Request::macro('fields', function () {
-            return new Fields($this);
+            return resolve(Fields::class);
         });
 
         Request::macro('sorts', function () {
@@ -42,16 +42,18 @@ class SaralaServiceProvider extends ServiceProvider
 
     public function register(): void
     {
+        $this->app->singleton(Sarala::class, Sarala::class);
+
         $this->app->bind(JsonApiSerializer::class, function ($app) {
             return new JsonApiSerializer(config('sarala.base_url'));
         });
 
-        $this->app->bind(DataArraySerializer::class, function ($app) {
-            return new DataArraySerializer();
-        });
+        $this->app->bind(DataArraySerializer::class, DataArraySerializer::class);
+
+        $this->app->singleton(Fields::class, Fields::class);
 
         $this->app->bind(Manager::class, function ($app) {
-            return (new Manager())->setSerializer(Sarala::resolve()->getSerializer());
+            return (new Manager())->setSerializer($app->make(Sarala::class)->getSerializer());
         });
     }
 }

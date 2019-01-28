@@ -14,7 +14,7 @@ class PostItemTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->apiRequest('get', route('posts.show', $post))
+        $this->withJsonApiHeaders('get', route('posts.show', $post))
             ->assertJson([
                 'data' => [
                     'id' => (int) $post->id,
@@ -43,7 +43,7 @@ class PostItemTest extends TestCase
 
         $url = route('posts.show', $post).'?include=comments';
 
-        $this->apiRequest('get', $url)
+        $this->withJsonApiHeaders('get', $url)
             ->assertJson([
                 'data' => [
                     'id' => (int) $post->id,
@@ -84,7 +84,7 @@ class PostItemTest extends TestCase
 
         $url = route('posts.show', $post).'?include=comments.author';
 
-        $this->apiRequest('get', $url)
+        $this->withJsonApiHeaders('get', $url)
             ->assertOk();
     }
 
@@ -98,7 +98,7 @@ class PostItemTest extends TestCase
 
         $url = route('posts.show', $post).'?include=comments:limit(5):sort(created_at|desc)';
 
-        $this->apiRequest('get', $url)
+        $this->withJsonApiHeaders('get', $url)
             ->assertOk();
     }
 
@@ -112,7 +112,7 @@ class PostItemTest extends TestCase
 
         $url = route('posts.show', $post).'?include=author,comments,tags';
 
-        $this->apiRequest('get', $url)
+        $this->withJsonApiHeaders('get', $url)
             ->assertOk();
     }
 }

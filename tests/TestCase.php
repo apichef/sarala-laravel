@@ -60,7 +60,7 @@ class TestCase extends BaseTestCase
             });
     }
 
-    public function apiRequest($method, $uri, array $data = [], $headers = [])
+    public function withJsonApiHeaders($method, $uri, array $data = [], $headers = [])
     {
         return $this->json($method, $uri, $data, array_merge([
             'CONTENT_TYPE' => 'application/vnd.api+json',

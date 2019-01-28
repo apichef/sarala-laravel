@@ -28,7 +28,7 @@ class FieldsTest extends TestCase
 
     public function test_get()
     {
-        $this->assertEquals(['posts.id', 'posts.title'], $this->fields->get('posts'));
-        $this->assertEquals(['tags.*'], $this->fields->get('tags'));
+        $this->assertEquals(['id', 'title'], $this->fields->get('posts'));
+        $this->assertNull($this->fields->get('tags'));
     }
 }

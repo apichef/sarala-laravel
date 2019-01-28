@@ -13,7 +13,7 @@ class ContentNegotiation
 {
     public function handle($request, Closure $next)
     {
-        $supportedMediaTypes = Sarala::resolve()->getSupportedMediaTypes();
+        $supportedMediaTypes = resolve(Sarala::class)->getSupportedMediaTypes();
 
         if (! in_array($request->header('Content-Type'), $supportedMediaTypes)) {
             throw new UnsupportedMediaTypeHttpException();

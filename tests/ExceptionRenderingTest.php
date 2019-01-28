@@ -8,7 +8,7 @@ class ExceptionRenderingTest extends TestCase
 {
     public function test_it_renders_exception()
     {
-        $this->apiRequest('get', route('exception'))
+        $this->withJsonApiHeaders('get', route('exception'))
             ->assertStatus(499)
             ->assertJson([
                 'error' => [

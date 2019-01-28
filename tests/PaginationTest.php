@@ -15,7 +15,7 @@ class PaginationTest extends TestCase
 
         $url = route('posts.index').'?include=comments.author';
 
-        $this->apiRequest('get', $url)
+        $this->withJsonApiHeaders('get', $url)
             ->assertOk();
     }
 
@@ -25,7 +25,7 @@ class PaginationTest extends TestCase
 
         $url = route('posts.index').'?page[size]=4&page[number]=1';
 
-        $this->apiRequest('get', $url)
+        $this->withJsonApiHeaders('get', $url)
             ->assertJsonStructure([
                 'data' => [
                     '*' => [
@@ -78,7 +78,7 @@ class PaginationTest extends TestCase
         $url = route('posts.index').'?include=comments&sort=-published_at&filter[my]&filter[does]=nothing&page[size]=4&page[number]=1';
 
         $this->actingAs($user)
-            ->apiRequest('get', $url)
+            ->withJsonApiHeaders('get', $url)
             ->assertJsonFragment([
                 'links' => [
                     'self' => 'http://localhost/posts?include=comments&sort=-published_at&filter%5Bdoes%5D=nothing&filter%5Bmy%5D=&filter%5Bdoes%5D=nothing&page%5Bsize%5D=4&page%5Bnumber%5D=1',
