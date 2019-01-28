@@ -16,14 +16,10 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class BaseController extends Controller
 {
-    protected $fractal;
+    protected $manager;
 
     public function __construct(Manager $manager, Request $request)
     {
-        if ($request->filled('fields')) {
-            $manager->parseFieldsets($request->get('fields'));
-        }
-
         if ($request->filled('include')) {
             $manager->parseIncludes($request->get('include'));
         }
@@ -32,7 +28,7 @@ class BaseController extends Controller
             $manager->parseExcludes($request->get('exclude'));
         }
 
-        $this->fractal = $manager;
+        $this->manager = $manager;
     }
 
     public function callAction($method, $parameters)
@@ -44,14 +40,14 @@ class BaseController extends Controller
         return parent::callAction($method, $parameters);
     }
 
-    public function responseItem($object, $transformer, $resourceKey = null): JsonResponse
+    public function responseItem($object, $transformer, $resourceKey): JsonResponse
     {
         $resource = new Item($object, $transformer, $resourceKey);
 
-        return $this->response($this->fractal->createData($resource)->toArray());
+        return $this->response($this->manager->createData($resource)->toArray());
     }
 
-    public function responseCollection($collection, $transformer, $resourceKey = null): JsonResponse
+    public function responseCollection($collection, $transformer, $resourceKey): JsonResponse
     {
         $resource = new Collection($collection, $transformer, $resourceKey);
 
@@ -59,7 +55,7 @@ class BaseController extends Controller
             $resource->setPaginator(new IlluminatePaginatorAdapter($collection));
         }
 
-        return $this->response($this->fractal->createData($resource)->toArray());
+        return $this->response($this->manager->createData($resource)->toArray());
     }
 
     private function response($data = [], $status = 200)

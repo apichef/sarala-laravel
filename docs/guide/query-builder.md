@@ -1,6 +1,6 @@
 ### Query Builder
 
-As we are implementing a REST API according to {json:api} specification, you may receive very complex fetch requests at your api endpoint. The purpose of `QueryBuilder` object is translating request to database query object. 
+You may receive very complex fetch requests at your api endpoint. The purpose of `QueryBuilder` object is translating request to database query object. 
 
 To support this, package comes with `QueryBuilderAbstract` class. You **MUST** extend when you are implementing query builder classes and you may implement following as per your requirement.
 

@@ -5,32 +5,27 @@ declare(strict_types=1);
 namespace Sarala\Query;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Fields
 {
-    /** @var array */
+    /** @var Collection $fields */
     private $fields;
 
     public function __construct(Request $request)
     {
-        $this->fields = $request->get('fields', []);
+        $this->fields = collect($request->get('fields', []))->mapWithKeys(function ($value, $key) {
+            return [$key => explode(',', $value)];
+        });
     }
 
     public function has($resourceName)
     {
-        return array_key_exists($resourceName, $this->fields);
+        return $this->fields->has($resourceName);
     }
 
-    public function get(string $resourceName): array
+    public function get(string $resourceName): ?array
     {
-        if ($this->has($resourceName)) {
-            return collect(explode(',', $this->fields[$resourceName]))
-                ->map(function ($field) use ($resourceName) {
-                    return "{$resourceName}.{$field}";
-                })
-                ->all();
-        }
-
-        return ["{$resourceName}.*"];
+        return $this->fields->get($resourceName);
     }
 }

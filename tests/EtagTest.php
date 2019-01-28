@@ -12,7 +12,7 @@ class EtagTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->apiRequest('get', route('posts.show', $post))
+        $this->withJsonApiHeaders('get', route('posts.show', $post))
             ->assertHeader('Etag');
     }
 
@@ -20,9 +20,9 @@ class EtagTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $r = $this->apiRequest('get', route('posts.show', $post));
+        $r = $this->withJsonApiHeaders('get', route('posts.show', $post));
 
-        $this->apiRequest('get', route('posts.show', $post), [], [
+        $this->withJsonApiHeaders('get', route('posts.show', $post), [], [
             'If-None-Match' => $r->headers->get('etag'),
         ])
         ->assertStatus(304);

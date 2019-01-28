@@ -8,15 +8,13 @@ use League\Fractal\Serializer\DataArraySerializer;
 
 class Sarala
 {
-    private static $instance;
-
     private $handlers;
 
     private $handler;
 
     private $supportedMediaTypes;
 
-    private function __construct()
+    public function __construct()
     {
         $this->handlers = collect(config('sarala.handlers'));
 
@@ -27,15 +25,6 @@ class Sarala
         $this->supportedMediaTypes = $this->handlers
             ->pluck('media_type')
             ->all();
-    }
-
-    public static function resolve(): self
-    {
-        if (! isset(self::$instance)) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
     }
 
     public function getSerializer()
