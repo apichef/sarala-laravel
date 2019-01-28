@@ -79,7 +79,7 @@ class PostItemRequest extends ApiRequestAbstract
 
 Sometimes you may need to add meta data to the resource object. You can override `meta` method on the transformer to do that.
 
-The `links` method will receive a model instance as the first parameter and the authenticated User as the second parameter. It should return an array. 
+The `meta` method will receive a model instance as the first parameter and the authenticated User as the second parameter. It should return an array. 
 
 ```php
 use Sarala\Http\Requests\ApiRequestAbstract;
@@ -91,7 +91,7 @@ class PostItemRequest extends ApiRequestAbstract
     public function meta($post, $user = null): Links
     {
         return [
-            'etag' => md5($post->updated_at)
+            'etag' => md5($post->updated_at->toIso8601String())
         ];
     }
     
