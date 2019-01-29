@@ -25,6 +25,36 @@ class LinksTest extends TestCase
         ], $links->all());
     }
 
+    public function test_can_push_only_link_instance_or_a_closure()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        Links::make()->push('not a link');
+    }
+
+    public function test_can_push_a_closure_returns_a_link()
+    {
+        $closure = function () {
+            return Link::make('unicorn', 'http://localhost/unicorn');
+        };
+        $links = Links::make()->push($closure);
+
+        $this->assertEquals([
+            'unicorn' => 'http://localhost/unicorn',
+        ], $links->all());
+    }
+
+    public function test_pushed_closure_must_returns_a_link()
+    {
+        $closure = function () {
+            return 'not a link';
+        };
+
+        $this->expectException(\InvalidArgumentException::class);
+
+        Links::make()->push($closure);
+    }
+
     public function test_can_push_multiple_links()
     {
         $unicorn = Link::make('unicorn', 'http://localhost/unicorn');

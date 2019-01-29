@@ -13,14 +13,24 @@ class Links
         return new self();
     }
 
-    public function push(Link $link)
+    public function push($link)
     {
+        if ($link instanceof \Closure) {
+            $link = $link();
+        }
+
+        if (! $link instanceof Link) {
+            throw new \InvalidArgumentException(
+                'push() method expects an instance of '.Link::class.' or a closure returns a '.Link::class.'. '.gettype($link).' given'
+            );
+        }
+
         $this->links[$link->name()] = $link->data();
 
         return $this;
     }
 
-    public function when($value, Link $link, Link $default = null)
+    public function when($value, $link, $default = null)
     {
         if ($value) {
             $this->push($link);

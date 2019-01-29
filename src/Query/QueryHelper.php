@@ -8,13 +8,12 @@ use Illuminate\Database\Eloquent\Builder;
 
 class QueryHelper
 {
-    /** @var Builder $query */
     private $query;
 
     /** @var QueryParamBag $includes */
     private $includes;
 
-    public function __construct(Builder $query, QueryParamBag $includes)
+    public function __construct($query, QueryParamBag $includes)
     {
         $this->query = $query;
         $this->includes = $includes;

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -34,11 +36,11 @@ abstract class QueryBuilderAbstract
         $this->fields = $this->request->fields();
         $this->includes = $this->request->includes();
         $this->filters = $this->request->filters();
-        $this->query = $this->init();
+        $this->query = $this->getInitialQuery();
         $this->queryHelper = new QueryHelper($this->query, $this->includes);
     }
 
-    abstract protected function init(): Builder;
+    abstract protected function init();
 
     protected function fields()
     {
@@ -140,5 +142,18 @@ abstract class QueryBuilderAbstract
     public function fetchFirst()
     {
         return $this->fetch()->first();
+    }
+
+    private function getInitialQuery()
+    {
+        $query = $this->init();
+
+        if ($query instanceof Builder || $query instanceof QueryBuilder || $query instanceof Relation) {
+            return $query;
+        }
+
+        throw new \Exception(
+            'Expected init() method to return '.Builder::class.', '.QueryBuilder::class.' or a '.Relation::class.'. '.gettype($query).' returned.'
+        );
     }
 }
