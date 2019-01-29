@@ -27,7 +27,7 @@ $postShowQuery->fetchFirst() // execute and returns first from collection
 ```
 
 ### init
-You must implement `init` method on the query object class. This method should return a `Illuminate\Database\Eloquent\Builder` object as the starting point of the query.
+You must implement `init` method on the query object class. This method should return a `Illuminate\Database\Eloquent\Builder`, `Illuminate\Database\Query\Builder` or `Illuminate\Database\Eloquent\Relations\Relation` object as the starting point of the query.
 
 ```
 GET /posts/{post}

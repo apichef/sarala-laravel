@@ -34,7 +34,7 @@ class PostItemRequest extends ApiRequestAbstract
 
 ### Conditionally add a link
 
-You may use `when` method to add a link to Links collection conditionally. It accepts a boolean as the first parameter and [Link](/guide/link.md) instance as the second parameter.
+You may use `when` method to add a link to Links collection conditionally. It accepts a boolean as the first parameter and [Link](/guide/link.md) instance or a closure returns a [Link](/guide/link.md) instance as the second parameter.
 
 ```php
 use Sarala\Http\Requests\ApiRequestAbstract;
@@ -49,6 +49,11 @@ class PostItemRequest extends ApiRequestAbstract
             ->when(
                 $user->can('delete', $post),
                 Link::make('delete', route('post.destroy', $post))
+            )->when(
+                $post->hasNext(),
+                function () {
+                    return Link::make('read_next', route('post.show', $post->next));
+                }
             );
     }
     

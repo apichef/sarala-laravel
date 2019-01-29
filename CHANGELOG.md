@@ -6,6 +6,14 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ---
 
+#### `[v0.1.8]` - 2019-01-29
+
+##### Changed 
+- Links push method accepts closures
+- QueryBuilder init method can return Eloquent Builder, Query Builder or Relation
+
+---
+
 #### `[v0.1.7]` - 2019-01-29
 
 ##### Added
