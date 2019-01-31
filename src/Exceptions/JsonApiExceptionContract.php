@@ -10,7 +10,7 @@ interface JsonApiExceptionContract
      * Get unique identifier for this particular occurrence
      * of the problem.
      */
-    public function id(): ?string;
+    public function id(): string;
 
     /**
      * Get the HTTP status code applicable to this problem.
@@ -20,7 +20,7 @@ interface JsonApiExceptionContract
     /**
      * Get application-specific error code.
      */
-    public function code(): ?string;
+    public function code(): string;
 
     /**
      * Get short, human-readable summary of the problem.
@@ -31,13 +31,13 @@ interface JsonApiExceptionContract
      * Get human-readable explanation specific to this
      * occurrence of the problem.
      */
-    public function detail(): ?string;
+    public function detail(): string;
 
     /**
      * Get the URI that yield further details about this
      * particular occurrence of the problem.
      */
-    public function href(): ?string;
+    public function href(): string;
 
     /**
      * Get associated resources, which can be dereferenced
@@ -49,5 +49,10 @@ interface JsonApiExceptionContract
      * Get relative path to the relevant attribute within
      * the associated resource(s).
      */
-    public function path(): ?string;
+    public function path(): string;
+
+    /**
+     * Get non-standard meta-information about the error.
+     */
+    public function meta(): array;
 }

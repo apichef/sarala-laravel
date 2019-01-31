@@ -14,35 +14,35 @@ abstract class ApiException extends Exception implements JsonApiExceptionContrac
      * Get unique identifier for this particular occurrence
      * of the problem.
      */
-    public function id(): ?string
+    public function id(): string
     {
-        return null;
+        return '';
     }
 
     /**
      * Get application-specific error code.
      */
-    public function code(): ?string
+    public function code(): string
     {
-        return null;
+        return '';
     }
 
     /**
      * Get human-readable explanation specific to this
      * occurrence of the problem.
      */
-    public function detail(): ?string
+    public function detail(): string
     {
-        return null;
+        return '';
     }
 
     /**
      * Get the URI that yield further details about this
      * particular occurrence of the problem.
      */
-    public function href(): ?string
+    public function href(): string
     {
-        return null;
+        return '';
     }
 
     /**
@@ -58,9 +58,17 @@ abstract class ApiException extends Exception implements JsonApiExceptionContrac
      * Get relative path to the relevant attribute within
      * the associated resource(s).
      */
-    public function path(): ?string
+    public function path(): string
     {
-        return null;
+        return '';
+    }
+
+    /**
+     * Get non-standard meta-information about the error.
+     */
+    public function meta(): array
+    {
+        return [];
     }
 
     public function render(Request $request): JsonResponse
@@ -70,22 +78,18 @@ abstract class ApiException extends Exception implements JsonApiExceptionContrac
             'title' => (string) $this->title(),
         ];
 
-        if (! empty($this->links())) {
-            $data['links'] = $this->links();
-        }
-
         $data = array_merge($data, $this->getAvailableData());
 
         return response()
-            ->json(['error' => $data], $this->status(), ['Content-Type' => 'application/vnd.api+json']);
+            ->json(['error' => $data], $this->status());
     }
 
     private function getAvailableData(): array
     {
         $data = [];
 
-        collect(['id', 'href', 'code', 'detail', 'path'])->each(function ($key) use (&$data) {
-            if (! is_null($this->{$key}())) {
+        collect(['links', 'meta', 'id', 'href', 'code', 'detail', 'path'])->each(function ($key) use (&$data) {
+            if (! empty($this->{$key}())) {
                 $data[$key] = $this->{$key}();
             }
         });

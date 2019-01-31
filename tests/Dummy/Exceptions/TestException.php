@@ -12,7 +12,7 @@ class TestException extends ApiException
      * Get unique identifier for this particular occurrence
      * of the problem.
      */
-    public function id(): ?string
+    public function id(): string
     {
         return 'ex001';
     }
@@ -28,7 +28,7 @@ class TestException extends ApiException
     /**
      * Get application-specific error code.
      */
-    public function code(): ?string
+    public function code(): string
     {
         return 'EX:SARALA:001';
     }
@@ -45,7 +45,7 @@ class TestException extends ApiException
      * Get human-readable explanation specific to this
      * occurrence of the problem.
      */
-    public function detail(): ?string
+    public function detail(): string
     {
         return 'More details about this error.';
     }
@@ -54,7 +54,7 @@ class TestException extends ApiException
      * Get the URI that yield further details about this
      * particular occurrence of the problem.
      */
-    public function href(): ?string
+    public function href(): string
     {
         return 'http://localhost/debug-exception/ex001';
     }
@@ -75,8 +75,18 @@ class TestException extends ApiException
      * Get relative path to the relevant attribute within
      * the associated resource(s).
      */
-    public function path(): ?string
+    public function path(): string
     {
         return 'foo.bar';
+    }
+
+    /**
+     * Get non-standard meta-information about the error.
+     */
+    public function meta(): array
+    {
+        return [
+            'foo' => 'bar',
+        ];
     }
 }

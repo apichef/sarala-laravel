@@ -23,7 +23,7 @@ class UnauthorizedIncludeException extends ApiException
         return 'Unacceptable include';
     }
 
-    public function detail(): ?string
+    public function detail(): string
     {
         return $this->getMessage();
     }
