@@ -24,8 +24,8 @@ class ExceptionRenderingTest extends TestCase
                     'href' => 'http://localhost/debug-exception/ex001',
                     'path' => 'foo.bar',
                     'meta' => [
-                        'foo' => 'bar'
-                    ]
+                        'foo' => 'bar',
+                    ],
                 ],
             ]);
     }
