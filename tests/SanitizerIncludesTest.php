@@ -16,7 +16,7 @@ class SanitizerIncludesTest extends TestCase
                         'status' => '403',
                         'title' => 'Unacceptable include',
                         'detail' => 'crap is missing in allowed includes. Allowed: tags,comments.author,tags_count,comments_count,author',
-                    ]
+                    ],
                 ],
             ]);
     }

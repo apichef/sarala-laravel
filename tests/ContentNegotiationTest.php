@@ -30,7 +30,7 @@ class ContentNegotiationTest extends TestCase
                 [
                     'status' => '415',
                     'title' => 'Unsupported Media Type',
-                ]
+                ],
             ],
         ]);
     }
@@ -49,7 +49,7 @@ class ContentNegotiationTest extends TestCase
                 [
                     'status' => '406',
                     'title' => 'Not Acceptable',
-                ]
+                ],
             ],
         ]);
     }
