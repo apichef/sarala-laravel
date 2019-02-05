@@ -26,9 +26,11 @@ class ContentNegotiationTest extends TestCase
         ])
         ->assertStatus(415)
         ->assertJson([
-            'error' => [
-                'status' => '415',
-                'title' => 'Unsupported Media Type',
+            'errors' => [
+                [
+                    'status' => '415',
+                    'title' => 'Unsupported Media Type',
+                ]
             ],
         ]);
     }
@@ -43,9 +45,11 @@ class ContentNegotiationTest extends TestCase
         ])
         ->assertStatus(406)
         ->assertJson([
-            'error' => [
-                'status' => '406',
-                'title' => 'Not Acceptable',
+            'errors' => [
+                [
+                    'status' => '406',
+                    'title' => 'Not Acceptable',
+                ]
             ],
         ]);
     }

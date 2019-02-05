@@ -11,10 +11,12 @@ class SanitizerIncludesTest extends TestCase
         $this->withJsonApiHeaders('get', route('posts.index').'?include=crap')
             ->assertStatus(403)
             ->assertJson([
-                'error' => [
-                    'status' => '403',
-                    'title' => 'Unacceptable include',
-                    'detail' => 'crap is missing in allowed includes. Allowed: tags,comments.author,tags_count,comments_count,author',
+                'errors' => [
+                    [
+                        'status' => '403',
+                        'title' => 'Unacceptable include',
+                        'detail' => 'crap is missing in allowed includes. Allowed: tags,comments.author,tags_count,comments_count,author',
+                    ]
                 ],
             ]);
     }

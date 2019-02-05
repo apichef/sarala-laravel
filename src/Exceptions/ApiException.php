@@ -7,6 +7,7 @@ namespace Sarala\Exceptions;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 abstract class ApiException extends Exception implements JsonApiExceptionContract
 {
@@ -71,17 +72,27 @@ abstract class ApiException extends Exception implements JsonApiExceptionContrac
         return [];
     }
 
-    public function render(Request $request): JsonResponse
+    protected function getResponseData(): array
     {
-        $data = [
+        $error = array_merge([
             'status' => (string) $this->status(),
             'title' => (string) $this->title(),
+        ], $this->getAvailableData());
+
+        return [
+            'errors' => [$error]
         ];
+    }
 
-        $data = array_merge($data, $this->getAvailableData());
-
+    protected function getApiResponse(): JsonResponse
+    {
         return response()
-            ->json(['error' => $data], $this->status());
+            ->json($this->getResponseData(), $this->status());
+    }
+
+    public function render(Request $request)
+    {
+        return $this->getApiResponse();
     }
 
     private function getAvailableData(): array
