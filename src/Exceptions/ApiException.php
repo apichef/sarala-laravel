@@ -6,8 +6,8 @@ namespace Sarala\Exceptions;
 
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 abstract class ApiException extends Exception implements JsonApiExceptionContract
 {
@@ -80,7 +80,7 @@ abstract class ApiException extends Exception implements JsonApiExceptionContrac
         ], $this->getAvailableData());
 
         return [
-            'errors' => [$error]
+            'errors' => [$error],
         ];
     }
 
