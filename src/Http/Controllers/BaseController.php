@@ -58,7 +58,7 @@ class BaseController extends Controller
         return $this->response($this->manager->createData($resource)->toArray(), $status);
     }
 
-    private function response($data = [], $status)
+    private function response($data, $status)
     {
         return response()->json($data, $status);
     }
