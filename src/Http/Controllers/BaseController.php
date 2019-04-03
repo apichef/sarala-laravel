@@ -40,14 +40,14 @@ class BaseController extends Controller
         return parent::callAction($method, $parameters);
     }
 
-    public function responseItem($object, $transformer, $resourceKey): JsonResponse
+    public function responseItem($object, $transformer, $resourceKey, $status = 200): JsonResponse
     {
         $resource = new Item($object, $transformer, $resourceKey);
 
-        return $this->response($this->manager->createData($resource)->toArray());
+        return $this->response($this->manager->createData($resource)->toArray(), $status);
     }
 
-    public function responseCollection($collection, $transformer, $resourceKey): JsonResponse
+    public function responseCollection($collection, $transformer, $resourceKey, $status = 200): JsonResponse
     {
         $resource = new Collection($collection, $transformer, $resourceKey);
 
@@ -55,10 +55,10 @@ class BaseController extends Controller
             $resource->setPaginator(new IlluminatePaginatorAdapter($collection));
         }
 
-        return $this->response($this->manager->createData($resource)->toArray());
+        return $this->response($this->manager->createData($resource)->toArray(), $status);
     }
 
-    private function response($data = [], $status = 200)
+    private function response($data = [], $status)
     {
         return response()->json($data, $status);
     }
