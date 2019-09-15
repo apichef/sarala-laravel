@@ -6,6 +6,7 @@ namespace Sarala\Query;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class Sorts
 {
@@ -21,7 +22,7 @@ class Sorts
 
             if (starts_with($field, '-')) {
                 $direction = SortField::SORT_DESCENDING;
-                $field = str_after($field, '-');
+                $field = Str::after($field, '-');
             }
 
             return new SortField($field, $direction);
