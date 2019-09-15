@@ -7,6 +7,8 @@ namespace Sarala\Transformer;
 use Sarala\Links;
 use Sarala\Query\Fields;
 use League\Fractal\TransformerAbstract as BaseTransformerAbstract;
+use Illuminate\Support\Arr;
+
 
 abstract class TransformerAbstract extends BaseTransformerAbstract
 {
@@ -55,6 +57,6 @@ abstract class TransformerAbstract extends BaseTransformerAbstract
 
         $fields = array_merge($fields->get($resourceName), self::REQUIRED_FIELDS);
 
-        return array_only($data, $fields);
+        return Arr::only($data, $fields);
     }
 }
