@@ -20,9 +20,9 @@
         }
     ],
     "require": {
-        "php": "~7.1",
-        "illuminate/database": "^5.7",
-        "illuminate/http": "^5.7",
+        "php": ">=7.1",
+        "illuminate/database": ">=5.7",
+        "illuminate/http": ">=5.7",
         "league/fractal": "^0.17.0"
     },
     "require-dev": {
