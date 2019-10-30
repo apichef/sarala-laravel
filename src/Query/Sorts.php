@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -19,9 +20,9 @@ class Sorts
         $this->fields = collect($params)->map(function ($field) {
             $direction = SortField::SORT_ASCENDING;
 
-            if (starts_with($field, '-')) {
+            if (Str::startsWith($field, '-')) {
                 $direction = SortField::SORT_DESCENDING;
-                $field = str_after($field, '-');
+                $field = Str::after($field, '-');
             }
 
             return new SortField($field, $direction);

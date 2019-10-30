@@ -14,7 +14,7 @@ class SortsTest extends TestCase
     /** @var Sorts $sorts */
     private $sorts;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $request = Request::create('/url?sort=-created_at,title');

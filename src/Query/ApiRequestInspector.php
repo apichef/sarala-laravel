@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Sarala\Http\Requests\ApiRequestAbstract;
 use Sarala\Exceptions\UnauthorizedIncludeException;
@@ -44,7 +45,7 @@ class ApiRequestInspector
     private function isIncludeAllowed($field): bool
     {
         foreach ($this->request->allowedIncludes() as $allowedInclude) {
-            if (starts_with($allowedInclude, $field)) {
+            if (Str::startsWith($allowedInclude, $field)) {
                 return true;
             }
         }

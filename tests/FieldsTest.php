@@ -13,7 +13,7 @@ class FieldsTest extends TestCase
     /** @var Fields $fields */
     private $fields;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $request = Request::create('/url?fields[posts]=id,title&fields[comments]=id,body');

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -22,7 +23,7 @@ class Post extends Model
 
     public function getSlugAttribute()
     {
-        return str_slug($this->title);
+        return Str::slug($this->title);
     }
 
     public function comments()
