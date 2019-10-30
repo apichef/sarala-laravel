@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Illuminate\Support\Arr;
 use Sarala\Dummy\Post;
+use Illuminate\Support\Arr;
 
 class ResponseCodeTest extends TestCase
 {
