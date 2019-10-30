@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Sarala\Query;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class QueryHelper
 {
@@ -79,7 +80,7 @@ class QueryHelper
     {
         if (is_string($relationship)) {
             $this->appendQuery($field, function ($query) use ($relationship) {
-                $relationship = str_replace_last('Count', '', camel_case($relationship));
+                $relationship = Str::replaceLast('Count', '', Str::camel($relationship));
 
                 $query->withCount($relationship);
             });

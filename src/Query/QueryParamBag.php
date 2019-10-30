@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
 class QueryParamBag
@@ -19,7 +20,7 @@ class QueryParamBag
 
     public function has($field): bool
     {
-        return array_has($this->params, $field);
+        return Arr::has($this->params, $field);
     }
 
     public function keys(): array
@@ -29,7 +30,7 @@ class QueryParamBag
 
     public function get($field, $default = null)
     {
-        return array_get($this->params, $field, $default);
+        return Arr::get($this->params, $field, $default);
     }
 
     public function isEmpty($field)
