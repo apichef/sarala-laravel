@@ -11,6 +11,9 @@ Route::get('/users/{user}', 'UserController@show')
 Route::get('/users/{user}/posts', 'UserPostController@index')
     ->name('users.posts.index');
 
+Route::post('/users/{user}/posts', 'UserPostController@store')
+    ->name('users.posts.store');
+
 Route::get('/posts', 'PostController@index')
     ->name('posts.index');
 
