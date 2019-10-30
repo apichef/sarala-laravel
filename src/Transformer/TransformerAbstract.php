@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Transformer;
 
-use Illuminate\Support\Arr;
 use Sarala\Links;
 use Sarala\Query\Fields;
+use Illuminate\Support\Arr;
 use League\Fractal\TransformerAbstract as BaseTransformerAbstract;
 
 abstract class TransformerAbstract extends BaseTransformerAbstract

@@ -18,11 +18,11 @@ trait PostQuery
                     $query->with(['comments' => function ($query) use ($includes) {
                         $query
                             ->when($includes->has('comments.limit'), function ($query) use ($includes) {
-                                list($limit) = $includes->get('comments.limit');
+                                [$limit] = $includes->get('comments.limit');
                                 $query->limit($limit);
                             })
                             ->when($includes->has('comments.sort'), function ($query) use ($includes) {
-                                list($column, $direction) = $includes->get('comments.sort');
+                                [$column, $direction] = $includes->get('comments.sort');
                                 $query->orderBy($column, $direction);
                             });
                     }]);

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Builder;
 
 class QueryHelper
 {

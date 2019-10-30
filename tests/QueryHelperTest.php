@@ -74,7 +74,7 @@ class QueryHelperTest extends TestCase
                 $query->with(['comments' => function ($query) use ($includes) {
                     $query
                         ->when($includes->has('comments.limit'), function ($query) use ($includes) {
-                            list($limit) = $includes->get('comments.limit');
+                            [$limit] = $includes->get('comments.limit');
                             $query->limit($limit);
                         });
                 }]);
