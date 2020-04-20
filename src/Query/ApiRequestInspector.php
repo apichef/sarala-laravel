@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Sarala\Http\Requests\ApiRequestAbstract;
+use Illuminate\Support\Str;
 use Sarala\Exceptions\UnauthorizedIncludeException;
+use Sarala\Http\Requests\ApiRequestAbstract;
 
 class ApiRequestInspector
 {
-    /** @var ApiRequestAbstract $request */
+    /** @var ApiRequestAbstract */
     private $request = null;
 
     public function __construct(array $parameters)

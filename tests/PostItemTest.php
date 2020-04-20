@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Sarala\Dummy\Tag;
-use Sarala\Dummy\Post;
 use Sarala\Dummy\Comment;
+use Sarala\Dummy\Post;
+use Sarala\Dummy\Tag;
 
 class PostItemTest extends TestCase
 {

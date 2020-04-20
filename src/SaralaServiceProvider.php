@@ -2,14 +2,14 @@
 
 namespace Sarala;
 
-use Sarala\Query\Sorts;
-use Sarala\Query\Fields;
-use League\Fractal\Manager;
 use Illuminate\Http\Request;
-use Sarala\Query\QueryParamBag;
 use Illuminate\Support\ServiceProvider;
-use League\Fractal\Serializer\JsonApiSerializer;
+use League\Fractal\Manager;
 use League\Fractal\Serializer\DataArraySerializer;
+use League\Fractal\Serializer\JsonApiSerializer;
+use Sarala\Query\Fields;
+use Sarala\Query\QueryParamBag;
+use Sarala\Query\Sorts;
 
 class SaralaServiceProvider extends ServiceProvider
 {

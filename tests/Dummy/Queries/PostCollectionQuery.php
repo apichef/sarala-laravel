@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Queries;
 
-use Sarala\Dummy\Post;
-use Sarala\Query\QueryParamBag;
-use Sarala\Query\QueryBuilderAbstract;
 use Illuminate\Database\Eloquent\Builder;
+use Sarala\Dummy\Post;
+use Sarala\Query\QueryBuilderAbstract;
+use Sarala\Query\QueryParamBag;
 
 class PostCollectionQuery extends QueryBuilderAbstract
 {

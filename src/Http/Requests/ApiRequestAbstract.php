@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Http\Requests;
 
-use Sarala\Query\QueryBuilderAbstract;
 use Illuminate\Foundation\Http\FormRequest;
+use Sarala\Query\QueryBuilderAbstract;
 
 abstract class ApiRequestAbstract extends FormRequest
 {

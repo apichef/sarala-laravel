@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Http\Requests;
 
-use Sarala\Query\QueryBuilderAbstract;
-use Sarala\Http\Requests\ApiRequestAbstract;
 use Sarala\Dummy\Queries\PostCollectionQuery;
+use Sarala\Http\Requests\ApiRequestAbstract;
+use Sarala\Query\QueryBuilderAbstract;
 
 class PostCollectionRequest extends ApiRequestAbstract
 {

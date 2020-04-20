@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Sarala\Query\Fields;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
+use Sarala\Query\Fields;
 
 class FieldsTest extends TestCase
 {
-    /** @var Fields $fields */
+    /** @var Fields */
     private $fields;
 
     public function setUp(): void

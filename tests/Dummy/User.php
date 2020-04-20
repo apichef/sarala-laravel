@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {

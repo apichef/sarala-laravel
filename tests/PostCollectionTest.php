@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala;
 
-use Sarala\Dummy\Post;
 use Sarala\Dummy\Comment;
+use Sarala\Dummy\Post;
 
 class PostCollectionTest extends TestCase
 {

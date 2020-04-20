@@ -4,30 +4,30 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Query\Builder as QueryBuilder;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Request;
 
 abstract class QueryBuilderAbstract
 {
-    /** @var Request $request */
+    /** @var Request */
     protected $request;
 
-    /** @var Builder $query */
+    /** @var Builder */
     protected $query;
 
-    /** @var Fields $fields */
+    /** @var Fields */
     protected $fields;
 
-    /** @var QueryParamBag $includes */
+    /** @var QueryParamBag */
     protected $includes;
 
-    /** @var QueryParamBag $filters */
+    /** @var QueryParamBag */
     protected $filters;
 
-    /** @var QueryHelper $queryHelper */
+    /** @var QueryHelper */
     private $queryHelper;
 
     public function __construct(Request $request)

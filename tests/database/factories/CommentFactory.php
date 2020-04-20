@@ -1,9 +1,9 @@
 <?php
 
+use Faker\Generator as Faker;
+use Sarala\Dummy\Comment;
 use Sarala\Dummy\Post;
 use Sarala\Dummy\User;
-use Sarala\Dummy\Comment;
-use Faker\Generator as Faker;
 
 $factory->define(Comment::class, function (Faker $faker) {
     return [

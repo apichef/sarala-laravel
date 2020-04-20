@@ -1,8 +1,8 @@
 <?php
 
+use Faker\Generator as Faker;
 use Sarala\Dummy\Post;
 use Sarala\Dummy\User;
-use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [
