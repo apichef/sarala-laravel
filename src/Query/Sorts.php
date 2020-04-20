@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class Sorts
 {
-    /** @var Collection $fields */
+    /** @var Collection */
     private $fields;
 
     public function __construct(Request $request)

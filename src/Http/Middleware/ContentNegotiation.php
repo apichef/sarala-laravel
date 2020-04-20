@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Sarala\Http\Middleware;
 
 use Closure;
-use Sarala\Sarala;
-use Sarala\Exceptions\UnsupportedMediaTypeHttpException;
 use Sarala\Exceptions\NotAcceptableMediaTypeHttpException;
+use Sarala\Exceptions\UnsupportedMediaTypeHttpException;
+use Sarala\Sarala;
 
 class ContentNegotiation
 {

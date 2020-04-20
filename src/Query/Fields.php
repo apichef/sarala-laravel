@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 
 class Fields
 {
-    /** @var Collection $fields */
+    /** @var Collection */
     private $fields;
 
     public function __construct(Request $request)

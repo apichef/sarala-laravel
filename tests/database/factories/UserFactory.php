@@ -1,8 +1,8 @@
 <?php
 
-use Sarala\Dummy\User;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
+use Sarala\Dummy\User;
 
 $factory->define(User::class, function (Faker $faker) {
     return [

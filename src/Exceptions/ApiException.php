@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Sarala\Exceptions;
 
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 abstract class ApiException extends Exception implements JsonApiExceptionContract
 {

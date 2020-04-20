@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Transformers;
 
+use Sarala\Dummy\Post;
 use Sarala\Link;
 use Sarala\Links;
-use Sarala\Dummy\Post;
 use Sarala\Transformer\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class QueryParamBag
 {

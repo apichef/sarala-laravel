@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Sarala\Query;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class QueryHelper
 {
     private $query;
 
-    /** @var QueryParamBag $includes */
+    /** @var QueryParamBag */
     private $includes;
 
     public function __construct($query, QueryParamBag $includes)

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sarala\Dummy\Queries;
 
-use Sarala\Query\QueryParamBag;
 use Illuminate\Database\Eloquent\Builder;
+use Sarala\Query\QueryParamBag;
 
 trait PostQuery
 {
