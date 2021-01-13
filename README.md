@@ -1,10 +1,9 @@
-<p align="center"><img src="https://milroy.me/img/sarala-logo.svg" width="200"></p>
-
 [![Latest Version on Packagist][ico-version]][link-packagist]
-    [![Software License][ico-license]](LICENSE.md)
-    [![Build Status](https://travis-ci.org/sarala-io/sarala-laravel.svg?branch=master)](https://travis-ci.org/sarala-io/sarala-laravel)
-    [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/?branch=master)
-    [![StyleCI](https://github.styleci.io/repos/163845768/shield?branch=master)](https://github.styleci.io/repos/163845768) 
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-ci]][link-ci]
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sarala-io/sarala-laravel/?branch=master)
+[![StyleCI](https://github.styleci.io/repos/163845768/shield?branch=master)](https://github.styleci.io/repos/163845768)
+[![Total Downloads][ico-downloads]][link-downloads]
 
 Easily build truly RESTful API with Laravel + {json:api}
 
@@ -62,13 +61,13 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/sarala-io/sarala.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/sarala-io/sarala/master.svg?style=flat-square
+[ico-ci]: https://github.com/sarala-io/sarala/workflows/CI/badge.svg
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/sarala-io/sarala.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/sarala-io/sarala.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/sarala-io/sarala.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/sarala-io/sarala
-[link-travis]: https://travis-ci.org/sarala-io/sarala
+[link-ci]: https://github.com/sarala-io/sarala/actions
 [link-scrutinizer]: https://scrutinizer-ci.com/g/sarala-io/sarala/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/sarala-io/sarala
 [link-downloads]: https://packagist.org/packages/sarala-io/sarala
