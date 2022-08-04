@@ -74,10 +74,6 @@ class QueryParamBag
     private function prepareArrayBasedParams($value): void
     {
         collect($value)->each(function ($params, $field) {
-            if (empty($params)) {
-                $params = [];
-            }
-
             if (is_array($params)) {
                 $params = $this->prepareArrayBasedNestedParams($params);
             }
