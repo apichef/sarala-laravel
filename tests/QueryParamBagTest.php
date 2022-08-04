@@ -52,4 +52,15 @@ class QueryParamBagTest extends TestCase
         $this->assertFalse($filterParam->isEmpty('before'));
         $this->assertEquals($filterParam->get('before'), '21-02-2019');
     }
+
+    public function test_falsey_values_should_be_available(): void
+    {
+        $url = '/url?filter[comments]=&filter[amount]=0&filter[verified]=false';
+        $request = Request::create($url);
+        $filterParam = new QueryParamBag($request, 'filter');
+
+        $this->assertSame('', $filterParam->get('comments'));
+        $this->assertSame('0', $filterParam->get('amount'));
+        $this->assertSame('false', $filterParam->get('verified'));
+    }
 }
