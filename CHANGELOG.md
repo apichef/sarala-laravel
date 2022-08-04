@@ -6,6 +6,13 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ---
 
+#### Unreleased
+
+##### Changed
+- The value `0` is not converted to an empty array when used in query parameters anymore
+
+---
+
 #### `[v0.1.8]` - 2019-01-29
 
 ##### Changed 
