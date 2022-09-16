@@ -15,7 +15,7 @@ abstract class TransformerAbstract extends BaseTransformerAbstract
         'id',
     ];
 
-    public function transform($data)
+    public function transform($data): array
     {
         $user = auth(config('sarala.guard'))->user();
 

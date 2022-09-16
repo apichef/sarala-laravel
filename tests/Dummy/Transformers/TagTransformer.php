@@ -9,7 +9,7 @@ use Sarala\Transformer\TransformerAbstract;
 
 class TagTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'posts',
     ];
 

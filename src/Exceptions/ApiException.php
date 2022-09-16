@@ -75,7 +75,7 @@ abstract class ApiException extends Exception implements JsonApiExceptionContrac
     {
         $error = array_merge([
             'status' => (string) $this->status(),
-            'title' => (string) $this->title(),
+            'title' => $this->title(),
         ], $this->getAvailableData());
 
         return [
@@ -89,7 +89,7 @@ abstract class ApiException extends Exception implements JsonApiExceptionContrac
             ->json($this->getResponseData(), $this->status());
     }
 
-    public function render(Request $request)
+    public function render(Request $request): JsonResponse
     {
         return $this->getApiResponse();
     }

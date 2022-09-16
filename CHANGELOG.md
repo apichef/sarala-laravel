@@ -6,11 +6,14 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ---
 
-#### Unreleased
+#### `[v0.2.1]` - 2022-09-16
 
 ##### Changed
-- The value `0` is not converted to an empty array when used in query parameters anymore
-
+- Drop laravel 6 and 7 support
+##### Added
+- Laravel 9 support
+##### Fixed
+- [Issue when parsing query pram value 0](https://github.com/sarala-io/sarala-laravel/pull/23)
 ---
 
 #### `[v0.1.8]` - 2019-01-29

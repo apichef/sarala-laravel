@@ -11,11 +11,11 @@ class Link
     const METHOD_PATCH = 'patch';
     const METHOD_DELETE = 'delete';
 
-    private $name;
+    private string $name;
 
-    private $url;
+    private string $url;
 
-    private $meta = [];
+    private array $meta = [];
 
     public function __construct(string $name, string $url)
     {
@@ -33,43 +33,46 @@ class Link
         return $this->name;
     }
 
-    public function post()
+    public function post(): self
     {
         return $this->setMethod(self::METHOD_POST);
     }
 
-    public function put()
+    public function put(): self
     {
         return $this->setMethod(self::METHOD_PUT);
     }
 
-    public function patch()
+    public function patch(): self
     {
         return $this->setMethod(self::METHOD_PATCH);
     }
 
-    public function delete()
+    public function delete(): self
     {
         return $this->setMethod(self::METHOD_DELETE);
     }
 
-    private function setMethod(string $method)
+    private function setMethod(string $method): self
     {
         return $this->meta('method', $method);
     }
 
-    public function meta(string $key, $value)
+    public function meta(string $key, $value): self
     {
         $this->meta[$key] = $value;
 
         return $this;
     }
 
-    public function setData(array $data)
+    public function setData(array $data): self
     {
         return $this->meta('data', $data);
     }
 
+    /**
+     * @return array|string
+     */
     public function data()
     {
         if (empty($this->meta)) {

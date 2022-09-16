@@ -6,14 +6,14 @@ namespace Sarala;
 
 class Links
 {
-    private $links = [];
+    private array $links = [];
 
-    public static function make()
+    public static function make(): self
     {
         return new self();
     }
 
-    public function push($link)
+    public function push($link): self
     {
         if ($link instanceof \Closure) {
             $link = $link();
@@ -30,7 +30,7 @@ class Links
         return $this;
     }
 
-    public function when($value, $link, $default = null)
+    public function when($value, $link, $default = null): self
     {
         if ($value) {
             $this->push($link);

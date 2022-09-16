@@ -16,7 +16,8 @@ use Sarala\Query\ApiRequestInspector;
 
 class BaseController extends Controller
 {
-    protected $manager;
+    protected Manager $manager;
+    private Request $request;
 
     public function __construct(Manager $manager, Request $request)
     {
@@ -29,11 +30,12 @@ class BaseController extends Controller
         }
 
         $this->manager = $manager;
+        $this->request = $request;
     }
 
     public function callAction($method, $parameters)
     {
-        if (request()->filled('include')) {
+        if ($this->request->filled('include')) {
             (new ApiRequestInspector($parameters))->inspect();
         }
 

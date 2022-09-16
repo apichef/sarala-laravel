@@ -11,7 +11,7 @@ use Sarala\Transformer\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'author',
         'tags',
         'comments',

@@ -9,7 +9,7 @@ use Sarala\Transformer\TransformerAbstract;
 
 class CommentTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'author',
     ];
 
