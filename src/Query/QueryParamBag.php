@@ -74,7 +74,7 @@ class QueryParamBag
     private function prepareArrayBasedParams($value): void
     {
         collect($value)->each(function ($params, $field) {
-            if (empty($params)) {
+            if (is_array($params) === false && trim($params) === '') {
                 $params = [];
             }
 
