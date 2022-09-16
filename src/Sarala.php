@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Sarala;
 
+use Illuminate\Support\Collection;
 use League\Fractal\Serializer\DataArraySerializer;
 
 class Sarala
 {
-    private $handlers;
+    private Collection $handlers;
 
     private $handler;
 
-    private $supportedMediaTypes;
+    private array $supportedMediaTypes;
 
     public function __construct()
     {
@@ -31,10 +32,10 @@ class Sarala
     {
         $serializer = is_null($this->handler) ? DataArraySerializer::class : $this->handler['serializer'];
 
-        return app()->make($serializer);
+        return resolve($serializer);
     }
 
-    public function getSupportedMediaTypes()
+    public function getSupportedMediaTypes(): array
     {
         return $this->supportedMediaTypes;
     }

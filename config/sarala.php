@@ -31,7 +31,7 @@ return [
     | Content Negotiation Handlers
     |--------------------------------------------------------------------------
     |
-    | Here you may define all of the 'handlers' that your API will support.
+    | Here you may define all the 'handlers' that your API will support.
     | The media_type setting within each handler is used to validate the
     | Content-Type and Accept headers sent by the client against the supported
     | media-types. Based on the given Accept header, the relevant handler's
